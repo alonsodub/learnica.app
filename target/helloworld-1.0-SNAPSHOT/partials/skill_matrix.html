@@ -1,0 +1,270 @@
+<div ng-controller="ShowSkillMatrixCtrl" ng-init="init()">
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="messages" class="alert alert-{{alertStatus}}" ng-show="messages">
+                <span ng-bind="messages"></span>
+                <i class="dismiss-messages pull-right glyphicon glyphicon-remove" ng-click="messages = ''"
+                   ng-show="messages"></i>
+            </div>
+            <img class="spinner" src="/img/ajax-loader.gif" ng-show="loading"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Skill Matrix</h3>
+              <h6>list all skills & tech</h6>
+              <tabset id="skill_matrix-tab" justified="true">
+                  <tab heading="Skills">
+                    <table>
+                      <tbody ng:repeat="i in skills">
+                        <tr><td>{{i.name}}</td><td>{{$index}}</td></tr>
+                        <tr ng:repeat="e in i.items">
+                          <td>{{$index}}</td>
+                          <td> {{e.name}} </td>
+                          <td> {{e.value}} </td></tr>
+                      </tbody>
+                    </table>
+                  </tab>
+                  <tab heading="Techs">
+                    <table>
+                      <tbody ng:repeat="i in techs">
+                        <tr><td>{{i.name}}</td><td>{{$index}}</td></tr>
+                        <tr ng:repeat="e in i.items">
+                          <td> {{$index}} </td>
+                          <td> {{e.name}} </td>
+                          <td> {{e.value}} </td></tr>
+                      </tbody>
+                    </table>
+                  </tab>
+                </tabset>
+      </div>
+    </div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Add
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add New</h4>
+      </div>
+      <div class="modal-body">
+        <form name="addForm" novalidate role="form">
+          <div class="form-group">
+              <label for="typeSelect">Type</label>
+              <select id="typeSelected"name="typeSelect" class="form-control"
+                ng-model="FormModel.type"ng-change="getCatalog()">
+                  <option value=0>Skill</option>
+                  <option value=1>Tech</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label >Catalog</label>
+              <select id="catalog" name="catalog" class="form-control"
+                ng-model="FormModel.catalog"
+                ng-disabled="!catalogs"
+                ng-options="catalog.name for catalog in catalogs">
+              </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <table>
+            <td>
+              <button ng-click="addType()" class="btn btn-primary">(+)
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-default" ng-click="resetForm()"data-dismiss="modal">Close</button>
+            </td>
+          </table>
+        </div>
+        </div></form>
+        </div>
+        </div>
+
+<!--
+<!-- ng-model="catalogSelecc"
+
+
+              <div class="form-group">
+                <label for="name">Name <span class="required">*</span></label>
+                      <span class="label label-danger"
+                                ng-show="conferenceForm.name.$error.required">Required!</span>
+                      <input id="name" type="text" name="name" ng-model="conference.name" class="form-control"
+                                   ng-required="true"/>
+                </div>
+                <div class="form-group">
+                  <label for="city">Id</label>
+                            <select id="city" ng-model="conference.city" name="city" ng-options="city for city in cities"
+                                    class="form-control">
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" type="text" name="description" ng-model="conference.description"
+                                      class="form-control"></textarea>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="maxAttendees">Max Attendees</label>
+                            <span class="label label-danger"
+                                ng-show="!isValidMaxAttendees()">Must be an integer!</span>
+                            <!-- The input type is text as the conference.maxAttendees will be undefined,
+                            hence isValidMaxAttendees will be true when input type is number
+                            <input id="maxAttendees" type="text" name="maxAttendees" ng-model="conference.maxAttendees"
+                                   class="form-control"/>
+                        </div>
+-->
+
+
+
+
+
+
+
+
+
+<!--
+<div>
+<form ng-submit="add()">
+  <!--<input type="text" size="30" placeholder="add skill" ng-model="skillName">
+  <button class="btn btn-primary" type="submit">Add</button>
+</form>
+</div>
+
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+
+
+<h2>Animated Modal with Header and Footer</h2>
+
+<!-- Trigger/Open The Modal
+<button id="myBtn">Open Modal</button>
+
+<button ng-click="showTheForm = !showTheForm"
+  class="btn btn-primary">OpenModal</button>
+
+<!-- Modal content
+ <div class="modal-content">
+   <div class="modal-header">
+     <span class="close">&times</span>
+     <h2>Modal Header</h2>
+   </div>
+   <div class="modal-body">
+     <p>Some text in the Modal Body</p>
+     <p>Some other text...</p>
+   </div>
+   <div class="modal-footer">
+     <h3>Modal Footer</h3>
+   </div>
+ </div>
+
+<script>
+ // Get the modal
+ var modal = document.getElementById('myModal');
+
+ // Get the button that opens the modal
+ var btn = document.getElementById("myBtn");
+
+ // Get the <span> element that closes the modal
+ var span = document.getElementsByClassName("close")[0];
+
+ // When the user clicks on the button, open the modal
+ btn.onclick = function() {
+     modal.style.display = "block";
+ }
+
+ // When the user clicks on <span> (x), close the modal
+ span.onclick = function() {
+     modal.style.display = "none";
+ }
+
+ // When the user clicks anywhere outside of the modal, close it
+ window.onclick = function(event) {
+     if (event.target == modal) {
+         modal.style.display = "none";
+     }
+ }
+</script>
+
+<!--
+
+<h6> list of skills</h6>
+<li ng-repeat="l in list">
+  <span>{{l.text}}</span>
+
+</li>
+
+<button ng-click="showTheForm = !showTheForm"
+  class="btn btn-primary">Add</button>
+
+  <button ng-click="openForm()"
+    class="btn btn-primary">add </button>
+-->
+
+<!--
+<form name="addForm" novalidate role="form" ng-hide="goCats">
+  <div class="form-group">
+  <label for="topics">Add</label>
+    <select id="add" name="add" class="form-control" multiple>
+      <option value="skill">Skill</option>
+      <option value="tech">Tech</option>
+    </select>
+  </div>
+
+<a href ng-click="goCats = !goCats">Toggle Cats</a>
+
+<button ng-click="dataForm = !dataForm"
+ <div ng-show="dataForm" id="dataForm">
+   </div>>Add</button>
+ -->

@@ -1,0 +1,516 @@
+{
+ "kind": "discovery#restDescription",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/rA82Og3xYte-I_1Sb85OOJljk7s\"",
+ "discoveryVersion": "v1",
+ "id": "learnicaEndPoints:v1",
+ "name": "learnicaEndPoints",
+ "version": "v1",
+ "description": "API for the Lernica Backend application.",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rest",
+ "baseUrl": "https://learnica-beta.appspot.com/_ah/api/learnicaEndPoints/v1/",
+ "basePath": "/_ah/api/learnicaEndPoints/v1/",
+ "rootUrl": "https://learnica-beta.appspot.com/_ah/api/",
+ "servicePath": "learnicaEndPoints/v1/",
+ "batchPath": "batch",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "Profile": {
+   "id": "Profile",
+   "type": "object",
+   "properties": {
+    "displayName": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "location": {
+     "type": "string"
+    },
+    "phone": {
+     "type": "string"
+    },
+    "position": {
+     "type": "string"
+    },
+    "skype": {
+     "type": "string"
+    }
+   }
+  },
+  "ProfileCollection": {
+   "id": "ProfileCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Profile"
+     }
+    }
+   }
+  },
+  "ProfileForm": {
+   "id": "ProfileForm",
+   "type": "object",
+   "properties": {
+    "displayName": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "location": {
+     "type": "string"
+    },
+    "phone": {
+     "type": "string"
+    },
+    "position": {
+     "type": "string"
+    },
+    "skype": {
+     "type": "string"
+    }
+   }
+  },
+  "Skill": {
+   "id": "Skill",
+   "type": "object",
+   "properties": {
+    "compositeKey": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string"
+    },
+    "level": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  },
+  "SkillCatalog": {
+   "id": "SkillCatalog",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    }
+   }
+  },
+  "SkillCatalogCollection": {
+   "id": "SkillCatalogCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "SkillCatalog"
+     }
+    }
+   }
+  },
+  "SkillCatalogForm": {
+   "id": "SkillCatalogForm",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    }
+   }
+  },
+  "SkillCollection": {
+   "id": "SkillCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Skill"
+     }
+    }
+   }
+  },
+  "SkillForm": {
+   "id": "SkillForm",
+   "type": "object",
+   "properties": {
+    "email": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string"
+    },
+    "level": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  },
+  "Tech": {
+   "id": "Tech",
+   "type": "object",
+   "properties": {
+    "compositeKey": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string"
+    },
+    "level": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  },
+  "TechCatalog": {
+   "id": "TechCatalog",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    }
+   }
+  },
+  "TechCatalogCollection": {
+   "id": "TechCatalogCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "TechCatalog"
+     }
+    }
+   }
+  },
+  "TechCatalogForm": {
+   "id": "TechCatalogForm",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    }
+   }
+  },
+  "TechCollection": {
+   "id": "TechCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Tech"
+     }
+    }
+   }
+  },
+  "TechForm": {
+   "id": "TechForm",
+   "type": "object",
+   "properties": {
+    "email": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string"
+    },
+    "level": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  }
+ },
+ "methods": {
+  "addSkill": {
+   "id": "learnicaEndPoints.addSkill",
+   "path": "addSkills",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "SkillForm",
+    "parameterName": "resource"
+   },
+   "response": {
+    "$ref": "Skill"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "addTech": {
+   "id": "learnicaEndPoints.addTech",
+   "path": "addTechs",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "TechForm",
+    "parameterName": "resource"
+   },
+   "response": {
+    "$ref": "Tech"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getAllSkills": {
+   "id": "learnicaEndPoints.getAllSkills",
+   "path": "AllSkills",
+   "httpMethod": "POST",
+   "response": {
+    "$ref": "SkillCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getAllTechs": {
+   "id": "learnicaEndPoints.getAllTechs",
+   "path": "AllTechs",
+   "httpMethod": "POST",
+   "response": {
+    "$ref": "TechCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getProfile": {
+   "id": "learnicaEndPoints.getProfile",
+   "path": "getprofile",
+   "httpMethod": "POST",
+   "parameters": {
+    "userEmail": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    }
+   },
+   "parameterOrder": [
+    "userEmail"
+   ],
+   "response": {
+    "$ref": "ProfileCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getProfileCatalog": {
+   "id": "learnicaEndPoints.getProfileCatalog",
+   "path": "ProfileCatalog",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "ProfileCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getSkillCatalog": {
+   "id": "learnicaEndPoints.getSkillCatalog",
+   "path": "SkillCatalog",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "SkillCatalogCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getSkills": {
+   "id": "learnicaEndPoints.getSkills",
+   "path": "getSkills",
+   "httpMethod": "POST",
+   "parameters": {
+    "userEmail": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    }
+   },
+   "parameterOrder": [
+    "userEmail"
+   ],
+   "response": {
+    "$ref": "SkillCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getTech": {
+   "id": "learnicaEndPoints.getTech",
+   "path": "getTechs",
+   "httpMethod": "POST",
+   "parameters": {
+    "userEmail": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    }
+   },
+   "parameterOrder": [
+    "userEmail"
+   ],
+   "response": {
+    "$ref": "TechCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getTechCatalog": {
+   "id": "learnicaEndPoints.getTechCatalog",
+   "path": "TechCatalog",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "TechCatalogCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "saveProfile": {
+   "id": "learnicaEndPoints.saveProfile",
+   "path": "profile",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "ProfileForm",
+    "parameterName": "resource"
+   },
+   "response": {
+    "$ref": "Profile"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "setSkillCatalog": {
+   "id": "learnicaEndPoints.setSkillCatalog",
+   "path": "SkillCatalog",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "SkillCatalogForm",
+    "parameterName": "resource"
+   },
+   "response": {
+    "$ref": "SkillCatalog"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "setTechCatalog": {
+   "id": "learnicaEndPoints.setTechCatalog",
+   "path": "TechCatalog",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "TechCatalogForm",
+    "parameterName": "resource"
+   },
+   "response": {
+    "$ref": "TechCatalog"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  }
+ }
+}

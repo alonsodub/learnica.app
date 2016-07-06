@@ -1,0 +1,44 @@
+Profile: {
+ "email": "miguel.alonso@mobica.com",
+ "displayName": "Miguel",
+ "position": "js software eng",
+ "phone": "123456",
+ "skype": "miao.mobica",
+ "location": "gdl",
+ "kind": "learnicaEndPoints#resourcesItem",
+ "etag": "\"CgryDxlMo4MnVYxqcDvMJ-xC-7M/6V2LLWKwG3NW2TksVIsvoxFL2tM\""
+}
+$scope.catalogs= [{ name: "skill list 0", hecho:true },
+                     { name: "skill list 1", hecho:true },
+                     { name: "skill list 2", hecho:true },
+                     { name: "skill list 3", hecho:true },
+                     { name: "skill list 4", hecho:true },  ];
+
+                     $scope.catalogs = [{ name: "tech list 0", hecho:true },
+                                          { name: "tech list 1", hecho:true },
+                                          { name: "tech list 2", hecho:true },
+                                          { name: "tech list 3", hecho:true },
+                                          { name: "tech list 4", hecho:true },  ];
+
+                                          learnicaApp.controllers.controller('skillMatrixCtrl',
+                                          function ($scope, $log, oauth2Provider, HTTP_ERRORS) {
+                                              // ** call method getSkills & getTechs from the API
+                                              // https://learnica-beta.appspot.com/_ah/api/learnicaEndPoints/v1/Skills;
+                                              //var request =   gapi.client.learnica.getSkills();
+                                              /*$http.get('https://learnica-beta.appspot.com/_ah/api/learnicaEndPoints/v1/Skills')
+                                              .success(function(data, status, headers, config) {
+
+                                              })
+                                              .error(function(error, status, headers, config) {
+                                               console.log(status);
+                                               console.log("Error occured");
+                                             });
+                                             */
+                                            // $http.get('https://learnica-beta.appspot.com/_ah/api/learnicaEndPoints/v1/Skills', config).then(successCallback, errorCallback);
+
+
+                                              alert("skillMatrixCtrl");
+                                          });
+                                          $scope.openForm = function(){
+                                            alert("Open dialog");
+                                          }

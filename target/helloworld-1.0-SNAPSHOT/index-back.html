@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lernica App</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-cosmo.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/offcanvas.css">
+  <link rel="shortcut icon" href="/img/learnica.png">
+  <meta property="og:title" content="Conference Central">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Conference Central web app that lets you manage conferences.">
+  <meta property="og:image" content="/img/learnica.png">
+  <meta property="og:site_name" content="An web app powered by Google App Engine">
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>
+
+
+
+
+<!--  Load the Google APIs Javascript client library
+<script src="hello.js"></script>
+-->
+<!--  Then call the init function, which is defined in hello.js
+<script src="https://apis.google.com/js/client.js?onload=init"></script>
+-->
+
+
+<script>
+    /**
+     * Initializes the Google API JavaScript client. Bootstrap the angular module after loading the Google libraries
+     * so that Google JavaScript library ready in the angular modules.
+     */
+    function init() {
+        gapi.client.load('learnica', 'v1', null, '//' + window.location.host + '/_ah/api');
+        gapi.client.load('oauth2', 'v2', function () {
+            angular.bootstrap(document, ['learnicaApp']);
+        });
+    };
+</script><!--  Then call the init function, which is defined in app.js -->
+<script src="//apis.google.com/js/client:plusone.js?onload=init"></script>
+
+
+
+
+</head>
+
+<body>
+
+<!-- Restore the credential from cookie if stored by calling initSignInButton() -->
+<body ng-controller="RootCtrl" ng-init="initSignInButton()">
+
+
+<H1>My First Endpoints App</H1>
+
+<P><input id="input_greet_generically" type="button" value="please wait"
+  onclick="will_be_set_after_endpoints_apis_loaded"></P>
+
+<P>What is your name?<input value ="Zebra" id="name_field"></P>
+
+<P><input id="input_greet_by_name" type="button" value="please wait"
+  onclick="will_be_set_after_endpoints_apis_loaded"></P>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/controllers.js"></script>
+
+
+
+</body>
+
+
+</html>

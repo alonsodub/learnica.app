@@ -1,0 +1,482 @@
+<div ng-controller="AdminSkillMatrixCtrl"> <!-- ng-init="init()" -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="messages" class="alert alert-{{alertStatus}}" ng-show="messages">
+                <span ng-bind="messages"></span>
+                <i class="dismiss-messages pull-right glyphicon glyphicon-remove" ng-click="messages = ''"
+                   ng-show="messages"></i>
+            </div>
+            <img class="spinner" src="/img/ajax-loader.gif" ng-show="loading"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Admin Skill Matrix</h3>
+              <!-- <div class="col-md-4"> -->
+
+<div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+  <input type="text" class="form-control" placeholder="Search" ng-model="searchKeyword" st-search="">
+</div>
+<table class="table">
+<thead>
+  <th><a href="" ng-click="ordenarPor('nombre')" />
+    Name</th>
+    <th>Position</th>
+    <!-- <td>Email</td>
+    <td>Skype</td>
+    <td>Phone</td> -->
+<thead>
+<tbody ng-repeat="profile in profiles | filter: searchKeyword" ng-click="setSelected(profile.email)">
+  <td>{{profile.displayName}}</td>
+  <td>{{profile.position}}</td>
+  <!--  <td>{{profile.email}}</td>
+  <td>{{profile.skype}}</td>
+  <td>{{profile.phone}}</td> -->
+</tbody>
+</table>
+<!--<input ng-model=profiles.name></input>  </div>   -->
+<!--
+  <div class="col-md-4">
+  <tabset id="skill_matrix-tab" justified="true">
+  <tab heading="Skills">
+  <table>
+  <tbody ng:repeat="i in skills">
+  <tr><td>{{i.name}}</td><td>{{$index}}</td></tr>
+  <tr ng:repeat="e in i.items">
+  <td>{{$index}}</td>
+  <td> {{e.name}} </td>
+  <td> {{e.value}} </td></tr>
+</tbody>
+</table>
+    </tab>
+      <tab heading="Techs">
+                    <table>
+                      <tbody ng:repeat="i in techs">
+                        <tr><td>{{i.name}}</td><td>{{$index}}</td></tr>
+                        <tr ng:repeat="e in i.items">
+                          <td> {{$index}} </td>
+                          <td> {{e.name}} </td>
+                          <td> {{e.value}} </td></tr>
+                      </tbody>
+                    </table>
+                  </tab>
+                </tabset>
+              </div> -->
+
+              <!-- Buttons trigger modals -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Add Profile
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSkills" ng-click="skillCatalog()">
+                Skill Catalog
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTechs" ng-click="techCatalog()">
+                Tech Catalog
+              </button>
+</div>
+<!--- skill & tech lists (change for each user profile)--->
+      <div class="col-md-6">
+
+
+        <table>
+        <!--  <th><input type="text" class="form-control" placeholder="Search" ng-model="searchKeyword" st-search=""></th> -->
+          <th>Skills</th> <!--  ng-repeat="tech in techs"-->
+          <th>Techs</th>
+          <td>
+            <ul ng-repeat="skill in skills">
+              <span>
+                {{skill.name}}
+              </span>
+                <!-- <span></span>-->
+            </ul>
+          </td>
+          <td>
+            <ul> <!-- ng-repeat="tech in techs">-->
+                <span>{{tech.name}}</span>
+            </ul>
+          </td>
+        </table>
+      </div>
+
+
+<!-- Modal Add Profile -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">New Profile</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form name="profileForm" novalidate role="form">
+                        <div class="form-group">
+                            <label for="displayName">Name </label>
+                            <input id="displayName" type="text" name="displayName" ng-model="profile.displayName"
+                                   class="form-control" required/>
+                        </div>
+                        <div class="form-group" >
+                            <label for="jobPosition">Current Job Position </label>{{jobPosition}}
+                            <input id="jobPosition" type="text" name="jobPosition" ng-model="profile.jobPosition"
+                                   class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone </label>
+                            <input id="phone" type="text" name="phone" ng-model="profile.phone"
+                                   class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email </label>
+                            <input id="email" type="text" name="email" ng-model="profile.email"
+                                   class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="skype">Skype </label>
+                            <input id="skype" type="text" name="skype" ng-model="profile.skype"
+                                   class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Office Location </label>
+                            <select id="officeLocation" ng-model="profile.location" name="officeLocation" ng-options="office for office in officeLocation"
+                                           class="form-control">
+                            </select>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <table>
+                          <td>
+                          </td>
+                          <button ng-click="saveProfile(profileForm)" class="btn btn-primary">Save</button>
+                          <td>
+                            <button type="button" class="btn btn-default" ng-click="resetForm()"data-dismiss="modal">Close</button>
+                          </td>
+                        </table>
+                      </div>
+                      </div></form>
+                      </div>
+                      </div>
+
+<!-- Modal List All Skills-->
+              <div class="modal fade" id="ModalSkills" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Skill Catalog</h4>
+                </div>
+              <div class="modal-body">
+                <ul ng-repeat="skill in skillCat">
+                  <input type="checkbox">
+                  <span>{{skill.name}}</span>
+                </ul>
+              </div>
+              <div class="modal-footer">
+              <form name="skillForm" novalidate role="form">
+                <table>
+                  <td>
+                    <div class="form-group">
+                            <input id="skillName" type="text" placeholder="Skill Name" ng-model="skillName"
+                            class="form-control" />
+                        </div>
+                  </td>
+                  <td>
+                    <div class="form-group" >
+                            <input id="skillId" type="text" placeholder="Skill Id" ng-model="skillId"
+                            class="form-control"/>
+                    </div>
+                  </td>
+                  <td>
+<button ng-click="saveSkill(skillForm)" class="btn btn-primary">add</button>
+                  </td>
+
+                </table>
+
+
+
+
+              </div>
+              </div>
+            </div>
+    </div>
+
+<!-- Modal List All Tech-->
+                  <div class="modal fade" id="ModalTechs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Tech Catalog</h4>
+                    </div>
+                  <div class="modal-body">
+                    <ul ng-repeat="tech in techCat">
+                      <input type="checkbox">
+                      <span>{{tech.name}}</span>
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                  <form name="techForm" novalidate role="form">
+                    <table>
+                      <td>
+                        <div class="form-group">
+                                <input id="techName" type="text" placeholder="Skill Name" ng-model="techName"
+                                class="form-control" />
+                            </div>
+                      </td>
+                      <td>
+                        <div class="form-group" >
+                                <input id="techId" type="text" placeholder="Skill Id" ng-model="techId"
+                                class="form-control"/>
+                        </div>
+                      </td>
+                      <td>
+    <button ng-click="saveTech(techForm)" class="btn btn-primary">add</button>
+                      </td>
+
+                    </table>
+
+
+
+
+                  </div>
+                  </div>
+                </div>
+        </div>
+
+
+
+        </div>
+
+            <!-- <div class="col-md-4"> -->
+
+
+
+          <!--      <table class="table">
+                  <thead>
+                    <td>Name</td>
+                    <td>Position</td>
+                    <!-- <td>Email</td>
+                    <td>Skype</td>
+                    <td>Phone</td> -->
+            <!--      <thead>
+                    <tbody ng-repeat="profile in profiles">
+                      <td>{{profile.displayName}}</td>
+                      <td>{{profile.position}}</td>
+                      <!--  <td>{{profile.email}}</td>
+                      <td>{{profile.skype}}</td>
+                      <td>{{profile.phone}}</td> -->
+            <!--        </tbody>
+
+
+                </table> -->
+            <!--<input ng-model=profiles.name></input>  </div>   -->
+
+            <!--
+            <div class="col-md-4">
+            <tabset id="skill_matrix-tab" justified="true">
+                <tab heading="Skills">
+                  <table>
+                    <tbody ng:repeat="i in skills">
+                      <tr><td>{{i.name}}</td><td>{{$index}}</td></tr>
+                      <tr ng:repeat="e in i.items">
+                        <td>{{$index}}</td>
+                        <td> {{e.name}} </td>
+                        <td> {{e.value}} </td></tr>
+                    </tbody>
+                  </table>
+                </tab>
+                <tab heading="Techs">
+                  <table>
+                    <tbody ng:repeat="i in techs">
+                      <tr><td>{{i.name}}</td><td>{{$index}}</td></tr>
+                      <tr ng:repeat="e in i.items">
+                        <td> {{$index}} </td>
+                        <td> {{e.name}} </td>
+                        <td> {{e.value}} </td></tr>
+                    </tbody>
+                  </table>
+                </tab>
+              </tabset>
+            </div> -->
+
+
+<!--
+<!-- ng-model="catalogSelecc"
+
+
+              <div class="form-group">
+                <label for="name">Name <span class="required">*</span></label>
+                      <span class="label label-danger"
+                                ng-show="conferenceForm.name.$error.required">Required!</span>
+                      <input id="name" type="text" name="name" ng-model="conference.name" class="form-control"
+                                   ng-required="true"/>
+                </div>
+                <div class="form-group">
+                  <label for="city">Id</label>
+                            <select id="city" ng-model="conference.city" name="city" ng-options="city for city in cities"
+                                    class="form-control">
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" type="text" name="description" ng-model="conference.description"
+                                      class="form-control"></textarea>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="maxAttendees">Max Attendees</label>
+                            <span class="label label-danger"
+                                ng-show="!isValidMaxAttendees()">Must be an integer!</span>
+                            <!-- The input type is text as the conference.maxAttendees will be undefined,
+                            hence isValidMaxAttendees will be true when input type is number
+                            <input id="maxAttendees" type="text" name="maxAttendees" ng-model="conference.maxAttendees"
+                                   class="form-control"/>
+                        </div>
+-->
+
+
+
+
+
+
+
+
+
+<!--
+<div>
+<form ng-submit="add()">
+  <!--<input type="text" size="30" placeholder="add skill" ng-model="skillName">
+  <button class="btn btn-primary" type="submit">Add</button>
+</form>
+</div>
+
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+
+
+<h2>Animated Modal with Header and Footer</h2>
+
+<!-- Trigger/Open The Modal
+<button id="myBtn">Open Modal</button>
+
+<button ng-click="showTheForm = !showTheForm"
+  class="btn btn-primary">OpenModal</button>
+
+<!-- Modal content
+ <div class="modal-content">
+   <div class="modal-header">
+     <span class="close">&times</span>
+     <h2>Modal Header</h2>
+   </div>
+   <div class="modal-body">
+     <p>Some text in the Modal Body</p>
+     <p>Some other text...</p>
+   </div>
+   <div class="modal-footer">
+     <h3>Modal Footer</h3>
+   </div>
+ </div>
+
+<script>
+ // Get the modal
+ var modal = document.getElementById('myModal');
+
+ // Get the button that opens the modal
+ var btn = document.getElementById("myBtn");
+
+ // Get the <span> element that closes the modal
+ var span = document.getElementsByClassName("close")[0];
+
+ // When the user clicks on the button, open the modal
+ btn.onclick = function() {
+     modal.style.display = "block";
+ }
+
+ // When the user clicks on <span> (x), close the modal
+ span.onclick = function() {
+     modal.style.display = "none";
+ }
+
+ // When the user clicks anywhere outside of the modal, close it
+ window.onclick = function(event) {
+     if (event.target == modal) {
+         modal.style.display = "none";
+     }
+ }
+</script>
+
+<!--
+
+<h6> list of skills</h6>
+<li ng-repeat="l in list">
+  <span>{{l.text}}</span>
+
+</li>
+
+<button ng-click="showTheForm = !showTheForm"
+  class="btn btn-primary">Add</button>
+
+  <button ng-click="openForm()"
+    class="btn btn-primary">add </button>
+-->
+
+<!--
+<form name="addForm" novalidate role="form" ng-hide="goCats">
+  <div class="form-group">
+  <label for="topics">Add</label>
+    <select id="add" name="add" class="form-control" multiple>
+      <option value="skill">Skill</option>
+      <option value="tech">Tech</option>
+    </select>
+  </div>
+
+<a href ng-click="goCats = !goCats">Toggle Cats</a>
+
+<button ng-click="dataForm = !dataForm"
+ <div ng-show="dataForm" id="dataForm">
+   </div>>Add</button>
+ -->
