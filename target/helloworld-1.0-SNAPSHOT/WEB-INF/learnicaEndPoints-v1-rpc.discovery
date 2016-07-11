@@ -1,18 +1,18 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/rA82Og3xYte-I_1Sb85OOJljk7s\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/2d5GEJ5HjkMGSJ9ILRHmPg8GOrU\"",
  "discoveryVersion": "v1",
  "id": "learnicaEndPoints:v1",
  "name": "learnicaEndPoints",
  "version": "v1",
- "description": "API for the Lernica Backend application.",
+ "description": "API for the Lernica Backend application :P",
  "icons": {
   "x16": "http://www.google.com/images/icons/product/search-16.gif",
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rpc",
- "rootUrl": "https://learnica-beta.appspot.com/_ah/api/",
- "rpcUrl": "https://learnica-beta.appspot.com/_ah/api/rpc",
+ "rootUrl": "https://learnica-gold.appspot.com/_ah/api/",
+ "rpcUrl": "https://learnica-gold.appspot.com/_ah/api/rpc",
  "rpcPath": "/_ah/api/rpc",
  "parameters": {
   "alt": {

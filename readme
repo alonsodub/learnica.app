@@ -1,0 +1,17 @@
+* client library generation
+  * communications
+  * error managment
+  * authentication
+
+client id (android/ios)
+
+Para aplicaciones de Android:
+
+En una ventana de terminal, cd para la biblioteca que contiene el pom.xml para su aplicación.
+mvn appengine:endpoints_get_client_lib
+cd en el directorio de target.
+cd para puntos finales-cliente-libs
+conferencia cd
+mvn install
+cd a la carpeta de destino
+Añadir la biblioteca cliente tarro nombreapl -v1-1. Nn -rc-SNAPSHOT.jar al proyecto para su aplicación móvil.

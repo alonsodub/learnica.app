@@ -1,0 +1,5 @@
+com/mobica/dev/learnica/domain/SkillCatalog.class
+com/mobica/dev/learnica/service/OfyService.class
+com/mobica/dev/learnica/domain/TechCatalog.class
+com/mobica/dev/learnica/form/TechCatalogForm.class
+com/mobica/dev/learnica/form/SkillCatalogForm.class

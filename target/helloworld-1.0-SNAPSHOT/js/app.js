@@ -81,11 +81,11 @@ app.constant('HTTP_ERRORS', {
  *
  */
 //** learnica gold 114294263067-fvd6rjsl439gbas8ta8dfb87feda089b.apps.googleusercontent.com **/
-
-
+// 1042909630422-8me3vdutp6k21cl8crc57atoq9jcf2uj.apps.googleusercontent.com
+// 1042909630422-8me3vdutp6k21cl8crc57atoq9jcf2uj.apps.googleusercontent.com
 app.factory('oauth2Provider', function ($modal) {
     var oauth2Provider = {
-        CLIENT_ID: '114294263067-qh1dq8cekuffc1e0hnu7itdfh42uk9ql.apps.googleusercontent.com',
+        CLIENT_ID: '1042909630422-8me3vdutp6k21cl8crc57atoq9jcf2uj.apps.googleusercontent.com',
         SCOPES: 'https://www.googleapis.com/auth/userinfo.email profile',
         signedIn: false
     };

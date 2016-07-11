@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/m3_BZY4XbXmPrPlWd2MGSdIpbLA\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/7c6eASXQcYkGki0i7L0-oLml8HU\"",
  "discoveryVersion": "v1",
  "id": "helloworldendpoints:v1",
  "name": "helloworldendpoints",
@@ -11,9 +11,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://learnica-beta.appspot.com/_ah/api/helloworldendpoints/v1/",
+ "baseUrl": "https://learnica-gold.appspot.com/_ah/api/helloworldendpoints/v1/",
  "basePath": "/_ah/api/helloworldendpoints/v1/",
- "rootUrl": "https://learnica-beta.appspot.com/_ah/api/",
+ "rootUrl": "https://learnica-gold.appspot.com/_ah/api/",
  "servicePath": "helloworldendpoints/v1/",
  "batchPath": "batch",
  "parameters": {

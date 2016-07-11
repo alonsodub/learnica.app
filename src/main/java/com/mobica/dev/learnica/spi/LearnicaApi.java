@@ -11,8 +11,7 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.api.server.spi.response.UnauthorizedException;
-//
-
+import com.google.appengine.api.users.User;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
@@ -40,9 +39,17 @@ import com.mobica.dev.learnica.form.TechForm;
 /**
  * Defines conference APIs.
  */
-@Api(name = "learnicaEndPoints", version = "v1", scopes = { Constants.EMAIL_SCOPE }, clientIds = {
-        Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID },
-        description = "API for the Lernica Backend application.")
+@Api(
+  name = "learnicaEndPoints",
+  version = "v1",
+  //namespace = @ApiNamespace(ownerDomain="com.mobica.learnica",ownerName="com.mobica.learnica",packagePath=""),
+  scopes = { Constants.EMAIL_SCOPE },
+  clientIds = {
+        Constants.WEB_CLIENT_ID,
+        Constants.ANDROID_CLIENT_ID,
+        Constants.API_EXPLORER_CLIENT_ID },
+  audiences = {Constants.ANDROID_AUDIENCE},
+  description = "API for the Lernica Backend application :P")
 public class LearnicaApi {
 
     /*
