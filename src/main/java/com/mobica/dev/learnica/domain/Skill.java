@@ -4,20 +4,19 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 @Entity
 public class Skill{
-	@Id 
+	@Id
 	private String compositeKey;
-	
 	@Index private String email;
 	protected String name;
 	private String id;
 	private String value;
 	private String level;
 	
-	
-	
+
+
 	public Skill(String compositeKey, String email,String name,String id,String value, String level){
 		this.compositeKey = compositeKey;
-		this.email = email;    	
+		this.email = email;
 		this.name = name;
 		this.id = id;
 		this.value = value;
@@ -88,7 +87,7 @@ public class Skill{
      * Just making the default constructor private.
      */
 	public Skill() {};
-	
+
 	/**
 	 * @return the compositeKey
 	 */
@@ -118,6 +117,6 @@ public class Skill{
 		if(level != null){
 			this.level = level;
 		}
-		
+
 	}
 }

@@ -128,6 +128,7 @@ public class LearnicaApi {
 
         // TODO 3
         // Save the entity in the datastore
+
         if (profile == null) {
         	profile = new Profile(mainEmail, displayName, position, phone, skype, location);
 

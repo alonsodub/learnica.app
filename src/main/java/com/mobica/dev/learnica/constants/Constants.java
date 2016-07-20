@@ -21,9 +21,9 @@ public class Constants {                    //1042909630422-8me3vdutp6k21cl8crc5
   public static final String WEB_CLIENT_ID = "1042909630422-8me3vdutp6k21cl8crc57atoq9jcf2uj.apps.googleusercontent.com";
   public static final String ANDROID_CLIENT_ID = "1042909630422-jq3este9mmpv5pevo1ji5eg84hu58oa0.apps.googleusercontent.com";
   public static final String IOS_CLIENT_ID = "";
-    public static final String ANDROID_AUDIENCE = WEB_CLIENT_ID; //ANDROID_CLIENT_ID
-    public static final String EMAIL_SCOPE = Constant.API_EMAIL_SCOPE;
-    public static final String API_EXPLORER_CLIENT_ID = Constant.API_EXPLORER_CLIENT_ID;
-
-    public static final String MEMCACHE_ANNOUNCEMENTS_KEY = "RECENT_ANNOUNCEMENTS";
+  public static final String ANDROID_AUDIENCE = WEB_CLIENT_ID; //ANDROID_CLIENT_ID
+  public static final String IOS_AUDIENCE = WEB_CLIENT_ID; //ANDROID_CLIENT_ID
+  public static final String EMAIL_SCOPE = Constant.API_EMAIL_SCOPE;
+  public static final String API_EXPLORER_CLIENT_ID = Constant.API_EXPLORER_CLIENT_ID;
+  public static final String MEMCACHE_ANNOUNCEMENTS_KEY = "RECENT_ANNOUNCEMENTS";
 }
