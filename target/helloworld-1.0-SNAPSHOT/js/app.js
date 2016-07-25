@@ -31,6 +31,9 @@ var app = angular.module('learnicaApp',
                 when('/', {
                     templateUrl: '/partials/home.html'
                 }).
+                when('/catalog', {
+                    templateUrl: '/partials/catalog.html'
+                }).
                 otherwise({
                     redirectTo: '/'
                 });

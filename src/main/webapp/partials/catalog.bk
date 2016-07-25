@@ -1,0 +1,109 @@
+
+<div style="float: left; width: 50%;">
+<ul>
+<li>Left Item 1</li>
+<li>Left Item 2</li>
+<li>Left Item 3</li>
+<li>Left Item 4</li>
+<li>Left Item 5</li>
+</ul>
+</div>
+<div style="float: right; width: 50%;">
+<ul>
+<li>Right Item 1</li>
+<li>Right Item 2</li>
+<li>Right Item 3</li>
+<li>Right Item 4</li>
+<li>Right Item 5</li>
+</ul>
+</div>
+
+
+
+<div class="row row-gap-medium">
+  <div class="col-sm-3">
+    <div class="row facet-categories">
+      <div class="col-xs-12">
+        <h4 class="h-slim">Category</h4>
+
+        <!-- all -->
+        <div class="row active">
+          <div class="col-xs-12">
+            <p class="form-control-static">
+              <a href="/courses/all" style="display: block; width: 100%">All</a>
+            </p>
+          </div>
+        </div>
+
+          <div class="row ">
+            <div class="col-xs-12">
+              <p class="form-control-static">
+                <!-- Force the clickable region to be the entire width of the container -->
+                <a href="/courses/android" style="display: block; width: 100%;">
+                  Android
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-xs-12">
+              <p class="form-control-static">
+                <!-- Force the clickable region to be the entire width of the container -->
+                <a href="/courses/data-science" style="display: block; width: 100%;">
+                  Data Science
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-xs-12">
+              <p class="form-control-static">
+                <!-- Force the clickable region to be the entire width of the container -->
+                <a href="/courses/georgia-tech-masters-in-cs" style="display: block; width: 100%;">
+                  Georgia Tech Masters in CS
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-xs-12">
+              <p class="form-control-static">
+                <!-- Force the clickable region to be the entire width of the container -->
+                <a href="/courses/ios" style="display: block; width: 100%;">
+                  iOS
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-xs-12">
+              <p class="form-control-static">
+                <!-- Force the clickable region to be the entire width of the container -->
+                <a href="/courses/non-tech" style="display: block; width: 100%;">
+                  Non-Tech
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-xs-12">
+              <p class="form-control-static">
+                <!-- Force the clickable region to be the entire width of the container -->
+                <a href="/courses/software-engineering" style="display: block; width: 100%;">
+                  Software Engineering
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-xs-12">
+              <p class="form-control-static">
+                <!-- Force the clickable region to be the entire width of the container -->
+                <a href="/courses/web-development" style="display: block; width: 100%;">
+                  Web Development
+                </a>
+              </p>
+            </div>
+          </div>
+      </div>
+    </div>
