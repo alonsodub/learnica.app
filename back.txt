@@ -1,0 +1,80 @@
+/*
+      FeedURLFactory urlFactory = FeedURLFactory.getDefault();
+      //WorksheetFeed worksheetFeed = spreadsheetService.getFeed(urlFactory.getWorksheetFeedUrl("1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98", "public", "full"), WorksheetFeed.class);
+      WorksheetFeed worksheetFeed = spreadsheetService.getFeed(urlFactory.getWorksheetFeedUrl("1V4jT4vSqmY4YNY1VJhariLRLbxfFWf5z8bSTpDcSBPE", "public", "full"), WorksheetFeed.class);
+*/
+
+
+      // Make a request to the API and get all spreadsheets.
+      // feed = null; new URL()
+      //SpreadsheetFeed feed = spreadsheetService.getFeed(Constants.SPREADSHEET_SCOPE, SpreadsheetFeed.class,null);
+      /*try {
+
+      } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+      }
+      */
+
+      //ListFeed lf = spreadsheetService.getFeed(new URL(Constants.SPREADSHEET_SCOPE), ListFeed.class,null);
+
+      //SpreadsheetFeed feed = spreadsheetService.getFeed(Constants.SPREADSHEET_SCOPE, SpreadsheetFeed.class);
+
+
+      //spreadsheetService.setOAuth2Credentials(googleCredential.build());
+    //  SpreadsheetFeed feed = spreadsheetService.getFeed(Constants.SPREADSHEET_SCOPE, Sprea
+
+      //SpreadsheetFeed feed = spreadsheetService.getFeed(Constants.SPREADSHEET_SCOPE, SpreadsheetFeed.class);
+      //List<SpreadsheetEntry> spreadsheets = feed.getEntries();
+      //return spreadsheets;
+
+
+      //spreadsheetService.setOAuth2Credentials(); //buildCredential() googleCredential.build()
+
+      /**/
+/*
+GoogleCredential credential = new GoogleCredential.Builder()
+                .setTransport(httpTransport)
+                .setJsonFactory(jsonFactory)
+                .setServiceAccountId("cliend_ID")
+                .setServiceAccountScopes(SCOPES)
+                .setServiceAccountPrivateKeyFromP12File(p12)
+                .build();
+
+*/
+
+        /*
+        @ApiMethod(name="getSpreadSheetLeo",path = "getSpreadSheetLeo", httpMethod = HttpMethod.GET)
+        public String getSpreadSheetLeo(){
+         try {
+           URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+          } catch (IOException e) {
+                 throw new RuntimeException(e);
+          }
+         String SPREADSHEET_FEED = "https://spreadsheets.google.com/feeds/spreadsheets/private/full";
+         *//*
+         URL SPREADSHEET_FEED = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+         File p12 = new File("key4.p12");
+
+         HttpTransport httpTransport = new NetHttpTransport();
+         JacksonFactory jsonFactory = new JacksonFactory();
+         String[] SCOPESArray = {"https://spreadsheets.google.com/feeds", "https://spreadsheets.google.com/feeds/spreadsheets/private/full", "https://docs.google.com/feeds"};
+         final List SCOPES = Arrays.asList(SCOPESArray);
+         GoogleCredential credential = new GoogleCredential.Builder()
+                 .setTransport(httpTransport)
+                 .setJsonFactory(jsonFactory)
+                 .setServiceAccountId("912672589282-01hugt7um9thb173pa5c4kfhhjo3qi39@developer.gserviceaccount.com")
+                 .setServiceAccountScopes(SCOPES)
+                 .setServiceAccountPrivateKeyFromP12File(p12)
+                 .build();
+
+         SpreadsheetService service = new SpreadsheetService("Test");
+
+         service.setOAuth2Credentials(credential);
+         SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED, SpreadsheetFeed.class);
+         List<SpreadsheetEntry> spreadsheets = feed.getEntries();
+
+         return "ok";
+         }
+
+*/

@@ -6,6 +6,40 @@ import static com.mobica.dev.learnica.service.OfyService.ofy;
 import java.util.List;
 
 import javax.inject.Named;
+import java.net.URL;
+//import com.google.appengine.api.appidentity;
+//import com.google.apphosting.api.ApiProxy;
+import com.google.appengine.api.appidentity.AppIdentityService;
+import com.google.appengine.api.appidentity.AppIdentityServiceFactory;
+import java.util.Collections;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.gdata.client.spreadsheet.SpreadsheetService;
+import com.google.gdata.client.spreadsheet.FeedURLFactory;
+import com.google.gdata.util.ServiceException;
+
+//import com.google.gdata.client.spreadsheet.SpreadsheetService;
+//import com.google.gdata.data.spreadsheet.ListFeed;
+import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
+import com.google.gdata.data.spreadsheet.ListFeed;
+import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
+import com.google.gdata.data.spreadsheet.WorksheetFeed;
+
+
+//import javax.xml.rpc.ServiceException;
+
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson.JacksonFactory;
+import java.util.Arrays;
+import java.io.File;
+import java.io.IOException;
+
+//import com.google.api.services.sheets.v4.SheetsScopes;
+//import com.google.api.client.googleapis.sheets.v4.model.*;
+//import com.google.api.client.googleapis.sheets.v4.Sheets;
+
+
+
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -30,7 +64,13 @@ import com.mobica.dev.learnica.form.SkillForm;
 import com.mobica.dev.learnica.form.TechCatalogForm;
 import com.mobica.dev.learnica.form.TechForm;
 
-//import com.google.api.server.sheet 
+//import com.google.api.server.sheet //
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+//import com.google.gdata.client.spreadsheet.CellQuery;
+
 
 // CONSTANTS
 // CLASSES
@@ -43,7 +83,7 @@ import com.mobica.dev.learnica.form.TechForm;
  */
 @Api(
   name = "learnicaEndPoints",
-  version = "v1",
+  version = "v2",
   //namespace = @ApiNamespace(ownerDomain="com.mobica.learnica",ownerName="com.mobica.learnica",packagePath=""),
   scopes = { Constants.EMAIL_SCOPE },
   clientIds = {
@@ -312,5 +352,49 @@ public class LearnicaApi {
         return query.list();
 
     }
+
+    @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.GET)
+    public  List<Tech> getSpreadSheet() { // throws ServiceException,IOException
+
+
+
+      //throws ServiceException,IOException
+      //https://docs.google.com/spreadsheets/d/1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98/edit?usp=sharing
+      /** List<SpreadsheetEntry>**/
+      //AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
+
+      /**String accessToken = appIdentity.getAccessToken(Collections.singleton(Constants.SPREADSHEET_SCOPE)).getAccessToken();
+      GoogleCredential googleCredential = new GoogleCredential();
+      googleCredential.setAccessToken(accessToken);
+      SpreadsheetService spreadsheetService = new SpreadsheetService("GAppEngine");
+      spreadsheetService.setHeader("Authorization", "Bearer " + accessToken);
+      /**
+      URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/worksheets/1UXoGD2gowxZ2TY3gooI9y7rwWTPBOA0dnkeNYwUqQRA/public/full");
+      //added new line *******************************
+      spreadsheetService.getFeed(new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full?xoauth_requestor_id=test"),WorksheetFeed.class);
+      //************************
+      SpreadsheetFeed feed = spreadsheetService.getFeed(SPREADSHEET_FEED_URL, SpreadsheetFeed.class);
+      List<SpreadsheetEntry> spreadsheets = feed.getEntries();
+
+      if (spreadsheets.size() == 0) {
+          // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+      return spreadsheets;
+      //System.out.println(spreadsheet.getTitle().getPlainText());
+      //return spreadsheet.getTitle().getPlainText();
+      **/
+        Query<Tech> query = ofy().load().type(Tech.class);
+        return query.list();
+
+
+    }
+
+
+
+
+
+
 
 }

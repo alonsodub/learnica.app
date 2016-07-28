@@ -4,6 +4,7 @@
 /home/alonso/LearnicaAPI/src/main/java/com/mobica/dev/learnica/domain/Tech.java
 /home/alonso/LearnicaAPI/src/main/java/com/mobica/dev/learnica/spi/LearnicaApi.java
 /home/alonso/LearnicaAPI/src/main/java/com/mobica/dev/learnica/domain/SkillCatalog.java
+/home/alonso/LearnicaAPI/src/main/java/com/mobica/dev/learnica/domain/SheetsQuickstart.java
 /home/alonso/LearnicaAPI/src/main/java/com/mobica/dev/learnica/service/OfyService.java
 /home/alonso/LearnicaAPI/src/main/java/com/mobica/dev/learnica/form/TechCatalogForm.java
 /home/alonso/LearnicaAPI/src/main/java/com/mobica/dev/learnica/form/DataForm.java

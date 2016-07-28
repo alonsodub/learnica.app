@@ -64,7 +64,41 @@
             <version>1.9.4</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+        <!-- Client Dependencies -->
+        <dependency>
+          <groupId>com.google.api-client</groupId>
+          <artifactId>google-api-client</artifactId>
+          <version>1.21.0</version>
+        </dependency>
+        <dependency>
+          <groupId>com.google.api-client</groupId>
+          <artifactId>google-api-client-appengine</artifactId>
+          <version>1.21.0</version>
+        </dependency>
+        <dependency>
+          <groupId>com.google.api-client</groupId>
+          <artifactId>google-api-client-servlet</artifactId>
+          <version>1.21.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-sheets -->
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-sheets</artifactId>
+            <version>v4-rev1-1.21.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.gdata/core -->
+        <dependency>
+            <groupId>com.google.gdata</groupId>
+            <artifactId>core</artifactId>
+            <version>1.47.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-jackson</artifactId>
+            <version>1.15.0-rc</version>
+        </dependency>
+
+      </dependencies>
 
     <build>
         <!-- for hot reload of the web application-->
@@ -112,7 +146,7 @@
                     <!-- jvmFlags>
                       <jvmFlag>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n</jvmFlag>
                     </jvmFlags -->
-                </configuration>                
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -120,7 +154,7 @@
                         </goals>
                     </execution>
                 </executions>
-                
+
             </plugin>
         </plugins>
     </build>
