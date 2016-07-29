@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 endpoints-skeleton
 ==================
 
@@ -51,3 +52,7 @@ A skeleton application for Google Cloud Endpoints in Java.
 [4]: https://developers.google.com/appengine/docs/java/tools/maven
 [5]: https://localhost:8080/_ah/api/explorer
 [6]: https://console.developers.google.com/
+=======
+# learnica.mvn
+google app engine app
+>>>>>>> ea8aaf7bfbe9b60d6c85d812040582efbdc476fd

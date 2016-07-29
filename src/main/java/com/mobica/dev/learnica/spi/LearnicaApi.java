@@ -354,21 +354,17 @@ public class LearnicaApi {
     }
 
     @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.GET)
-    public  List<Tech> getSpreadSheet() { // throws ServiceException,IOException
-
-
-
+    public List<SpreadsheetEntry> getSpreadSheet() throws ServiceException,IOException{ //
+      // List<Tech>
       //throws ServiceException,IOException
       //https://docs.google.com/spreadsheets/d/1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98/edit?usp=sharing
       /** List<SpreadsheetEntry>**/
-      //AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
-
-      /**String accessToken = appIdentity.getAccessToken(Collections.singleton(Constants.SPREADSHEET_SCOPE)).getAccessToken();
+      AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
+      String accessToken = appIdentity.getAccessToken(Collections.singleton(Constants.SPREADSHEET_SCOPE)).getAccessToken();
       GoogleCredential googleCredential = new GoogleCredential();
       googleCredential.setAccessToken(accessToken);
       SpreadsheetService spreadsheetService = new SpreadsheetService("GAppEngine");
       spreadsheetService.setHeader("Authorization", "Bearer " + accessToken);
-      /**
       URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/worksheets/1UXoGD2gowxZ2TY3gooI9y7rwWTPBOA0dnkeNYwUqQRA/public/full");
       //added new line *******************************
       spreadsheetService.getFeed(new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full?xoauth_requestor_id=test"),WorksheetFeed.class);
@@ -384,10 +380,10 @@ public class LearnicaApi {
       return spreadsheets;
       //System.out.println(spreadsheet.getTitle().getPlainText());
       //return spreadsheet.getTitle().getPlainText();
-      **/
+      /*
         Query<Tech> query = ofy().load().type(Tech.class);
         return query.list();
-
+      */
 
     }
 
