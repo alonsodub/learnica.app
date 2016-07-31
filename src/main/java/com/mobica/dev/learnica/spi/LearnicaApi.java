@@ -23,6 +23,7 @@ import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.ListFeed;
 import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
+import java.security.GeneralSecurityException;
 
 
 //import javax.xml.rpc.ServiceException;
@@ -354,15 +355,17 @@ public class LearnicaApi {
     }
 
     @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.GET)
-    public List<SpreadsheetEntry> getSpreadSheet() throws ServiceException,IOException{ //
-      // List<Tech>
+    public List<SpreadsheetEntry> getSpreadSheet() throws IOException, ServiceException { //
+      // List<Tech> List<SpreadsheetEntry>
       //throws ServiceException,IOException
       //https://docs.google.com/spreadsheets/d/1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98/edit?usp=sharing
       /** List<SpreadsheetEntry>**/
+
       AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
       String accessToken = appIdentity.getAccessToken(Collections.singleton(Constants.SPREADSHEET_SCOPE)).getAccessToken();
       GoogleCredential googleCredential = new GoogleCredential();
       googleCredential.setAccessToken(accessToken);
+
       SpreadsheetService spreadsheetService = new SpreadsheetService("GAppEngine");
       spreadsheetService.setHeader("Authorization", "Bearer " + accessToken);
       URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/worksheets/1UXoGD2gowxZ2TY3gooI9y7rwWTPBOA0dnkeNYwUqQRA/public/full");
@@ -378,12 +381,67 @@ public class LearnicaApi {
 
       SpreadsheetEntry spreadsheet = spreadsheets.get(0);
       return spreadsheets;
+
+
       //System.out.println(spreadsheet.getTitle().getPlainText());
       //return spreadsheet.getTitle().getPlainText();
       /*
         Query<Tech> query = ofy().load().type(Tech.class);
         return query.list();
-      */
+      /*
+            URL SPREADSHEET_FEED_URL;
+             SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+             File p12 = new File("./key4.p12");
+
+             HttpTransport httpTransport = new NetHttpTransport();
+             JacksonFactory jsonFactory = new JacksonFactory();
+             String[] SCOPESArray = {"https://spreadsheets.google.com/feeds", "https://spreadsheets.google.com/feeds/spreadsheets/private/full", "https://docs.google.com/feeds"};
+             final List SCOPES = Arrays.asList(SCOPESArray);
+             GoogleCredential credential = new GoogleCredential.Builder()
+                     .setTransport(httpTransport)
+                     .setJsonFactory(jsonFactory)
+                     .setServiceAccountId("912672589282-01hugt7um9thb173pa5c4kfhhjo3qi39@developer.gserviceaccount.com")
+                     .setServiceAccountScopes(SCOPES)
+                     .setServiceAccountPrivateKeyFromP12File(p12)
+                     .build();
+
+             SpreadsheetService service = new SpreadsheetService("Test");
+
+             service.setOAuth2Credentials(credential);
+             SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL, SpreadsheetFeed.class);
+             List<SpreadsheetEntry> spreadsheets = feed.getEntries();
+             return spreadsheets;
+/*
+             if (spreadsheets.size() == 0) {
+                 System.out.println("No spreadsheets found.");
+             }
+
+             SpreadsheetEntry spreadsheet = null;
+             for (int i = 0; i < spreadsheets.size(); i++) {
+                 spreadsheet = spreadsheets.get(i);
+                 System.out.println(String.format("[%d] spreadsheet: %s", i, spreadsheets.get(i).getTitle().getPlainText()));
+             }
+
+             WorksheetFeed worksheetFeed = service.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+             List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
+             WorksheetEntry worksheet = worksheets.get(0);
+
+             URL listFeedUrl = worksheet.getListFeedUrl();
+             ListFeed listFeed = service.getFeed(listFeedUrl, ListFeed.class);
+
+             // Iterate through each row, printing its cell values.
+             for (ListEntry row : listFeed.getEntries()) {
+                 // Print the first column's cell value
+                 System.out.print(row.getTitle().getPlainText() + "\t");
+                 // Iterate over the remaining columns, and print each cell value
+                 for (String tag : row.getCustomElements().getTags()) {
+                     System.out.print(row.getCustomElements().getValue(tag) + "\t");
+                 }
+                 System.out.println();
+*/
+
+
 
     }
 
