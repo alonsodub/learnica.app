@@ -84,7 +84,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Api(
   name = "learnicaEndPoints",
-  version = "v2",
+  version = "dev",
   //namespace = @ApiNamespace(ownerDomain="com.mobica.learnica",ownerName="com.mobica.learnica",packagePath=""),
   scopes = { Constants.EMAIL_SCOPE },
   clientIds = {
@@ -361,6 +361,14 @@ public class LearnicaApi {
         return query.list();
 
     }
+    @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.GET)
+      public List<Tech>  getSpreadSheet() throws IOException, ServiceException { //
+
+        Query<Tech> query = ofy().load().type(Tech.class);
+          return query.list();
+
+      }
+
 
 
 

@@ -1,19 +1,21 @@
 {
- "kind": "discovery#rpcDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/kQqAqXMN2BHg1Psy6Jps34FXbzo\"",
+ "kind": "discovery#restDescription",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/RNoTw5fS9S_QfrFl50rm_vyhnkQ\"",
  "discoveryVersion": "v1",
- "id": "learnicaEndPoints:v2",
+ "id": "learnicaEndPoints:dev",
  "name": "learnicaEndPoints",
- "version": "v2",
+ "version": "dev",
  "description": "API for the Lernica Backend application :P",
  "icons": {
   "x16": "http://www.google.com/images/icons/product/search-16.gif",
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
- "protocol": "rpc",
+ "protocol": "rest",
+ "baseUrl": "https://learnica-gold.appspot.com/_ah/api/learnicaEndPoints/dev/",
+ "basePath": "/_ah/api/learnicaEndPoints/dev/",
  "rootUrl": "https://learnica-gold.appspot.com/_ah/api/",
- "rpcUrl": "https://learnica-gold.appspot.com/_ah/api/rpc",
- "rpcPath": "/_ah/api/rpc",
+ "servicePath": "learnicaEndPoints/dev/",
+ "batchPath": "batch",
  "parameters": {
   "alt": {
    "type": "string",
@@ -353,197 +355,204 @@
   }
  },
  "methods": {
-  "learnicaEndPoints.addSkill": {
+  "addSkill": {
    "id": "learnicaEndPoints.addSkill",
-   "parameters": {
-    "resource": {
-     "$ref": "SkillForm"
-    }
+   "path": "addSkills",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "SkillForm",
+    "parameterName": "resource"
    },
-   "parameterOrder": [
-    "resource"
-   ],
-   "returns": {
+   "response": {
     "$ref": "Skill"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.addTech": {
+  "addTech": {
    "id": "learnicaEndPoints.addTech",
-   "parameters": {
-    "resource": {
-     "$ref": "TechForm"
-    }
+   "path": "addTechs",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "TechForm",
+    "parameterName": "resource"
    },
-   "parameterOrder": [
-    "resource"
-   ],
-   "returns": {
+   "response": {
     "$ref": "Tech"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.getAllSkills": {
+  "getAllSkills": {
    "id": "learnicaEndPoints.getAllSkills",
-   "returns": {
+   "path": "AllSkills",
+   "httpMethod": "POST",
+   "response": {
     "$ref": "SkillCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.getAllTechs": {
+  "getAllTechs": {
    "id": "learnicaEndPoints.getAllTechs",
-   "returns": {
+   "path": "AllTechs",
+   "httpMethod": "POST",
+   "response": {
     "$ref": "TechCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.getProfile": {
+  "getProfile": {
    "id": "learnicaEndPoints.getProfile",
+   "path": "getprofile",
+   "httpMethod": "POST",
    "parameters": {
     "userEmail": {
      "type": "string",
-     "required": true
+     "required": true,
+     "location": "query"
     }
    },
    "parameterOrder": [
     "userEmail"
    ],
-   "returns": {
+   "response": {
     "$ref": "ProfileCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.getProfileCatalog": {
+  "getProfileCatalog": {
    "id": "learnicaEndPoints.getProfileCatalog",
-   "allowGet": true,
-   "returns": {
+   "path": "ProfileCatalog",
+   "httpMethod": "GET",
+   "response": {
     "$ref": "ProfileCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.getSkillCatalog": {
+  "getSkillCatalog": {
    "id": "learnicaEndPoints.getSkillCatalog",
-   "allowGet": true,
-   "returns": {
+   "path": "SkillCatalog",
+   "httpMethod": "GET",
+   "response": {
     "$ref": "SkillCatalogCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.getSkills": {
+  "getSkills": {
    "id": "learnicaEndPoints.getSkills",
+   "path": "getSkills",
+   "httpMethod": "POST",
    "parameters": {
     "userEmail": {
      "type": "string",
-     "required": true
+     "required": true,
+     "location": "query"
     }
    },
    "parameterOrder": [
     "userEmail"
    ],
-   "returns": {
+   "response": {
     "$ref": "SkillCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.getSpreadSheet": {
+  "getSpreadSheet": {
    "id": "learnicaEndPoints.getSpreadSheet",
-   "allowGet": true,
-   "returns": {
+   "path": "SpreadSheet",
+   "httpMethod": "GET",
+   "response": {
     "$ref": "TechCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.getTech": {
+  "getTech": {
    "id": "learnicaEndPoints.getTech",
+   "path": "getTechs",
+   "httpMethod": "POST",
    "parameters": {
     "userEmail": {
      "type": "string",
-     "required": true
+     "required": true,
+     "location": "query"
     }
    },
    "parameterOrder": [
     "userEmail"
    ],
-   "returns": {
+   "response": {
     "$ref": "TechCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.getTechCatalog": {
+  "getTechCatalog": {
    "id": "learnicaEndPoints.getTechCatalog",
-   "allowGet": true,
-   "returns": {
+   "path": "TechCatalog",
+   "httpMethod": "GET",
+   "response": {
     "$ref": "TechCatalogCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.saveProfile": {
+  "saveProfile": {
    "id": "learnicaEndPoints.saveProfile",
-   "parameters": {
-    "resource": {
-     "$ref": "ProfileForm"
-    }
+   "path": "profile",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "ProfileForm",
+    "parameterName": "resource"
    },
-   "parameterOrder": [
-    "resource"
-   ],
-   "returns": {
+   "response": {
     "$ref": "Profile"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.setSkillCatalog": {
+  "setSkillCatalog": {
    "id": "learnicaEndPoints.setSkillCatalog",
-   "parameters": {
-    "resource": {
-     "$ref": "SkillCatalogForm"
-    }
+   "path": "SkillCatalog",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "SkillCatalogForm",
+    "parameterName": "resource"
    },
-   "parameterOrder": [
-    "resource"
-   ],
-   "returns": {
+   "response": {
     "$ref": "SkillCatalog"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "learnicaEndPoints.setTechCatalog": {
+  "setTechCatalog": {
    "id": "learnicaEndPoints.setTechCatalog",
-   "parameters": {
-    "resource": {
-     "$ref": "TechCatalogForm"
-    }
+   "path": "TechCatalog",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "TechCatalogForm",
+    "parameterName": "resource"
    },
-   "parameterOrder": [
-    "resource"
-   ],
-   "returns": {
+   "response": {
     "$ref": "TechCatalog"
    },
    "scopes": [

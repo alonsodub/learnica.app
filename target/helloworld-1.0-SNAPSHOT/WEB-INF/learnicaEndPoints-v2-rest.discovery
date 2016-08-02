@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/fLfCllwDTSs-cI0Idtp-GFS27o0\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/kQqAqXMN2BHg1Psy6Jps34FXbzo\"",
  "discoveryVersion": "v1",
  "id": "learnicaEndPoints:v2",
  "name": "learnicaEndPoints",
@@ -466,6 +466,17 @@
    ],
    "response": {
     "$ref": "SkillCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getSpreadSheet": {
+   "id": "learnicaEndPoints.getSpreadSheet",
+   "path": "SpreadSheet",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "TechCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

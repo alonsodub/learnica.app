@@ -1,10 +1,10 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/kQqAqXMN2BHg1Psy6Jps34FXbzo\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/RNoTw5fS9S_QfrFl50rm_vyhnkQ\"",
  "discoveryVersion": "v1",
- "id": "learnicaEndPoints:v2",
+ "id": "learnicaEndPoints:dev",
  "name": "learnicaEndPoints",
- "version": "v2",
+ "version": "dev",
  "description": "API for the Lernica Backend application :P",
  "icons": {
   "x16": "http://www.google.com/images/icons/product/search-16.gif",
