@@ -13,7 +13,12 @@ public class ProfileForm {
     private String email;
     private String skype;
     private String location;
-
+    private String office;
+    private String role;
+    private String contactImg;
+    private String department;
+    private String responsible;
+    private String starDate;
 
     private ProfileForm () {}
 
@@ -22,13 +27,20 @@ public class ProfileForm {
      * @param displayName A String for displaying the user on this system.
      * @param notificationEmail An e-mail address for getting notifications from this system.
      */
-    public ProfileForm(String displayName,String position,String phone, String email, String skype, String location) {
+    public ProfileForm(String displayName,String position,String phone, String email, String skype, String location,String office, String role,
+    String contactImg,String department,String responsible,String starDate) {
         this.displayName = displayName;
         this.position = position;
         this.phone = phone;
         this.email = email;
         this.skype = skype;
         this.location = location;
+        this.office = office;
+        this.role = role;
+        this.contactImg = contactImg;
+        this.department = department;
+        this.responsible=responsible;
+        this.starDate=starDate;
     }
 
     public String getDisplayName() {
@@ -48,5 +60,23 @@ public class ProfileForm {
     }
     public String getLocation() {
         return location;
+    }
+    public String getOffice() {
+        return office;
+    }
+    public String getRole() {
+        return role;
+    }
+    public String getContactImg() {
+        return contactImg;
+    }
+    public String getDepartment() {
+        return department;
+    }
+    public String getResponsible() {
+        return responsible;
+    }
+    public String getStarDate() {
+        return starDate;
     }
 }

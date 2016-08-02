@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/GMb_zGNR2v4bEf0ROeIERd4j6kw\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/fLfCllwDTSs-cI0Idtp-GFS27o0\"",
  "discoveryVersion": "v1",
  "id": "learnicaEndPoints:v2",
  "name": "learnicaEndPoints",
@@ -75,6 +75,12 @@
    "id": "Profile",
    "type": "object",
    "properties": {
+    "contactImg": {
+     "type": "string"
+    },
+    "department": {
+     "type": "string"
+    },
     "displayName": {
      "type": "string"
     },
@@ -84,13 +90,25 @@
     "location": {
      "type": "string"
     },
+    "office": {
+     "type": "string"
+    },
     "phone": {
      "type": "string"
     },
     "position": {
      "type": "string"
     },
+    "responsible": {
+     "type": "string"
+    },
+    "role": {
+     "type": "string"
+    },
     "skype": {
+     "type": "string"
+    },
+    "starDate": {
      "type": "string"
     }
    }
@@ -111,6 +129,12 @@
    "id": "ProfileForm",
    "type": "object",
    "properties": {
+    "contactImg": {
+     "type": "string"
+    },
+    "department": {
+     "type": "string"
+    },
     "displayName": {
      "type": "string"
     },
@@ -120,13 +144,25 @@
     "location": {
      "type": "string"
     },
+    "office": {
+     "type": "string"
+    },
     "phone": {
      "type": "string"
     },
     "position": {
      "type": "string"
     },
+    "responsible": {
+     "type": "string"
+    },
+    "role": {
+     "type": "string"
+    },
     "skype": {
+     "type": "string"
+    },
+    "starDate": {
      "type": "string"
     }
    }
@@ -430,17 +466,6 @@
    ],
    "response": {
     "$ref": "SkillCollection"
-   },
-   "scopes": [
-    "https://www.googleapis.com/auth/userinfo.email"
-   ]
-  },
-  "getSpreadSheet": {
-   "id": "learnicaEndPoints.getSpreadSheet",
-   "path": "SpreadSheet",
-   "httpMethod": "GET",
-   "response": {
-    "$ref": "TechCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

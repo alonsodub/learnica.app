@@ -12,11 +12,11 @@ import com.googlecode.objectify.annotation.Id;
 // TODO indicate that this class is an Entity
 @Entity
 public class Profile {
-    
+
    // TeeShirtSize teeShirtSize;
 
 
-    // *** MOBICA PROFILE ** //b 
+    // *** MOBICA PROFILE ** //b
 	// TODO indicate that the email is to be used in the Entity's key
     @Id String email;;
     String displayName;
@@ -24,9 +24,16 @@ public class Profile {
     String phone;
     String skype;
     String location;
+    String office;
+    String role;
+    String contactImg;
+    String department;
+    String responsible;
+    String starDate;
 
 
-    
+
+
 
     /**
      * Keys of the conferences that this user registers to attend.
@@ -38,16 +45,23 @@ public class Profile {
      * @param userId The user id, obtained from the email
      * @param displayName Any string user wants us to display him/her on this system.
      * @param mainEmail User's main e-mail address.
-     * @param 
+     * @param
      *
      */
-    public Profile (String email, String displayName, String position, String phone, String skype, String location) {
+    public Profile (String email, String displayName, String position, String phone, String skype, String location,String office,String role,
+    String contactImg,String department,String responsible,String starDate) {
         this.email = email;
         this.displayName = displayName;
         this.position = position;
         this.phone = phone;
         this.skype = skype;
         this.location = location;
+        this.office = office;
+        this.role = role;
+        this.contactImg = contactImg;
+        this.department = department;
+        this.responsible=responsible;
+        this.starDate=starDate;
     }
 
     /**
@@ -130,8 +144,44 @@ public class Profile {
 	public String getDisplayName() {
         return displayName;
     }
+    public void setOffice(String office) {
+        this.office = office;
+    }
+    public String getOffice() {
+        return office;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
+    public String getRole() {
+        return role;
+    }
+    public void setContactImg(String contactImg) {
+        this.contactImg = contactImg;
+    }
+    public String getContactImg() {
+        return contactImg;
+    }
+    public void setDepartment(String department) {
+      this.department = department;
+    }
+    public String getDepartment() {
+        return department;
+    }
+    public void setResponsible(String responsible) {
+      this.responsible=responsible;
 
- 
+    }
+    public String getResponsible() {
+            return responsible;
+        }
+    public void setStarDate(String starDate) {
+          this.starDate=starDate;
+        }
+        public String getStarDate() {
+            return starDate;
+        }
+
     /**
      * Getter for conferenceIdsToAttend.
      * @return an immutable copy of conferenceIdsToAttend.
@@ -149,13 +199,14 @@ public class Profile {
      * Update the Profile with the given displayName and teeShirtSize
      *
      * @param displayName
-     * @param location 
+     * @param location
      * @param skype
-     * @param phone 
-     * @param position 
-     * @param teeShirtSize
+     * @param phone
+     * @param position
+     * @param office
      */
-    public void update(String displayName, String position, String phone, String skype, String location) {
+    public void update(String displayName, String position, String phone, String skype, String location,String office,String role,
+    String contactImg,String department,String responsible,String starDate) {
         if (displayName != null) {
             this.displayName = displayName;
         }
@@ -171,7 +222,24 @@ public class Profile {
         if(location != null){
         	this.location = location;
         }
-        
+        if(office != null){
+        	this.office = office;
+        }
+        if(role != null){
+        	this.role = role;
+        }
+        if(contactImg != null){
+        this.contactImg = contactImg;
+      }
+        if(department != null){
+        this.department = department;
+      }
+      if(responsible != null){
+        this.responsible=responsible;
+      }
+    if(starDate != null){
+        this.starDate=starDate;
+      }
     }
 
     /**
