@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "learnica-gold",
+  "private_key_id": "ec54e51e8a39a028e6e937e7ee11baef39c0792f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDJdwLqSKStye7d\n3mUaRY5ekRT9Y7YYttaCG4rmQRkETP6pxFB/HnjOT7e+A9N53Gn1ntUzJjxWduEJ\ndrp/Y8z6phqlJuFJeXwMI6fq9+w/765KkbjvjxQX0Ix5/bfaRWnLHIJtTE/0+0Va\nOPb8Kj2165j0jwI8ito8ajBaDMHlbVhJQ7rxg/DcCTn/xcCJZ2gLvyyWMnQQk3RK\nNhlj5aNrQx8qk2RaDCyd9p9tpm7ZVCCLjLkkdeS98C0U7vpccy41Lr7duHyNpNUK\n+fyN0lW655rnjVvwe9sAESYZtSOUDsUS6S/uTeSu30uS6gatExbc4DjmSK4llOqI\nbZMMoRpfAgMBAAECggEAadidL3n7C1OMrASsGaFxqz2OSZKZmWJ2UOUnlNGe0yOg\nqJD7uc3Iqpw3bR2VffDPurw4RydPjB3pHY/DbCqDBy090oca1f99rOMO1eRruyux\n5nupLjN92wU2yOEENylA6/WOkN4HJC7fwQcsvE91HJ8rPVHlWumYvyULQkRxmpdo\nPy/LrNSJeREwfpZaUhD252qeMkLzPkz+UYtsnPvKbhMhhDS/818IUaMntzHAL2tf\nOvx4afEM6mKoDDef5iRY5FafrrBByZOfvHF8iAgH3KJopKjdnrYQ33Hd+dqwf96S\ntAzF7YxVH+RYQDdNzpxI5ti5/BH+aqAL81ET2OoIAQKBgQD9MXJ+aT4J+fJlViHs\nLlFpaV4u8wYm2iAo2mCU5Je9D3FW+51OkLM9JBEdy8u+BM0UFWFiPBTfsfoFBG8/\n0nXG6XiwrH511fQ9LXZF6v9OAl2rGIXxYs2mFyQswrmToD+3Q6khY1qLvyR8PauL\ncSqknt6mVKPM/eH9jIMi/MrNlwKBgQDLssLhb0pBqrGk9jLe/+EcMVs9L0xhMENC\npQ4n4nQmSQrENAeo/1zGMT8DVvVm1DQk6360XKaPT6cH1bxOx1dYASCc51p/oDby\noW5aXzi9sZAVWOQv+B8aGmRtmDoOzaE8TZa0LRM1ZU9US5yXvX+WYetwoUHyT3FU\nkopD+QNCeQKBgDQmyjmFffTaGfaLjkMyqyw2OuMaxaqdBUDE8l3Y0/RqSOMswpMb\nNQAj/K6Req7yGDfJy5xLWdVVuHTuG+gedon5LxXdAdNNtZggVBtEsz+jNx312CkH\nO+q5G4douIbS3Czob97jsxPT1DUPEtWPAsSTwLKr/m1L4g+ysJQ1U6STAoGAOjGY\n0VS9DyOX2rvnbqQFiMtk+IbhuEZUgN6su6JLcoCdjc4bfiFuPMTm7qpSM41eVEnf\nCeIKR5kG7AsY4By9DExOJ+VEin+YExshbroTeMYYlrCtiDLHl+qAVHsP4xjF/ndg\nHZtfCHsn/boYQ5WEtM7Gt4eqUnJ1uyaeT6r9TmkCgYBldwXReg6IjfIVTAadpzuB\ncYBVNo3tJA4gHjyEgkW8zf++iWVO0H+AEpmUTWfilMGQyEl0qXUTm38/G20C4OIx\nTDRySumPVkh4/OCZPpIGRgGPrJRQD65MLLsBX1nHul6nsjczXrlPqp60ihkZpXfs\nLNItFglryv1ZHYMN5nI1oQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "learnica-gold@appspot.gserviceaccount.com",
+  "client_id": "109633178779191251052",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/learnica-gold%40appspot.gserviceaccount.com"
+}

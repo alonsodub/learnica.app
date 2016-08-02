@@ -22,11 +22,13 @@ public class Constants {                    //1042909630422-8me3vdutp6k21cl8crc5
   public static final String ANDROID_CLIENT_ID = "1042909630422-jq3este9mmpv5pevo1ji5eg84hu58oa0.apps.googleusercontent.com";
   public static final String IOS_CLIENT_ID = "";
   public static final String SERVICE = "ec54e51e8a39a028e6e937e7ee11baef39c0792f";
-  public static final String SPREADSHEET_SCOPE= "'https://www.googleapis.com/auth/drive','https://spreadsheets.google.com/feeds','https://docs.google.com/feeds'";
+  public static final String SPREADSHEET_SCOPE= "'https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive.readonly'";
   //"https://docs.google.com/spreadsheets/d/1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98/edit?usp=sharing";
-
-
-  public static final String SPREADSHEET = "1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98";
+  //  https://spreadsheets.google.com/feeds
+ // 'https://www.googleapis.com/auth/drive','https://spreadsheets.google.com/feeds','https://docs.google.com/feeds'
+  public static final String SPREADSHEET_URL = "https://spreadsheets.google.com/feeds/spreadsheets/1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98";
+  public static final String SPREADSHEET_IDURL = "https://spreadsheets.google.com/feeds/spreadsheets/private/full/";
+  public static final String SPREADSHEET_ID = "1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98";
   public static final String ANDROID_AUDIENCE = WEB_CLIENT_ID; //ANDROID_CLIENT_ID
   public static final String IOS_AUDIENCE = WEB_CLIENT_ID; //ANDROID_CLIENT_ID
   public static final String EMAIL_SCOPE = Constant.API_EMAIL_SCOPE;

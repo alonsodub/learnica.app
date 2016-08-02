@@ -13,6 +13,10 @@ import com.google.appengine.api.appidentity.AppIdentityService;
 import com.google.appengine.api.appidentity.AppIdentityServiceFactory;
 import java.util.Collections;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.auth.oauth2.BearerToken;
+
+//import com.google.api.client.googleapis.auth.oauth2.Credential;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
 import com.google.gdata.client.spreadsheet.FeedURLFactory;
 import com.google.gdata.util.ServiceException;
@@ -22,19 +26,33 @@ import com.google.gdata.util.ServiceException;
 import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.ListFeed;
 import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
+//import com.google.gdata.data.spreadsheet.SpreadsheetQuery;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
+import com.google.gdata.data.spreadsheet.WorksheetEntry;
+import com.google.gdata.data.spreadsheet.CellFeed;
+import com.google.gdata.data.spreadsheet.CellEntry;
 import java.security.GeneralSecurityException;
 
 
 //import javax.xml.rpc.ServiceException;
-
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.jackson.JacksonFactory;
+//import com.google.api.client.json.jackson.JacksonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import java.util.Arrays;
 import java.io.File;
 import java.io.IOException;
 
+
+import com.google.api.client.googleapis.extensions.appengine.auth.oauth2.AppIdentityCredential;
+import com.google.api.services.sheets.v4.SheetsScopes;
+/*
+import com.google.api.services.sqladmin.SQLAdminScopes;
+import com.google.api.services.sqladmin.SQLAdmin;
+import com.google.api.services.sqladmin.SQLAdmin.Instances;
+import com.google.api.services.sqladmin.SQLAdmin.Instances.List;
+*/
 //import com.google.api.services.sheets.v4.SheetsScopes;
 //import com.google.api.client.googleapis.sheets.v4.model.*;
 //import com.google.api.client.googleapis.sheets.v4.Sheets;
@@ -59,6 +77,8 @@ import com.mobica.dev.learnica.domain.SkillCatalog;
 import com.mobica.dev.learnica.domain.Tech;
 import com.mobica.dev.learnica.domain.TechCatalog;
 import com.mobica.dev.learnica.domain.UserLogin;
+import com.mobica.dev.learnica.domain.Test;
+
 import com.mobica.dev.learnica.form.ProfileForm;
 import com.mobica.dev.learnica.form.SkillCatalogForm;
 import com.mobica.dev.learnica.form.SkillForm;
@@ -145,6 +165,12 @@ public class LearnicaApi {
         String phone = newProfileForm.getPhone();
         String skype = newProfileForm.getSkype();
         String location = newProfileForm.getLocation();
+        String office = newProfileForm.getOffice();
+        String deparment = newProfileForm.getDepartment();
+        String role = newProfileForm.getRole();
+        String responsible = newProfileForm.getResponsible();
+        String starDate = newProfileForm.getstarDate();
+        String profilePicture=newProfileForm.getproilePicture();
 
 
 
@@ -173,12 +199,11 @@ public class LearnicaApi {
         // Save the entity in the datastore
 
         if (profile == null) {
-        	profile = new Profile(mainEmail, displayName, position, phone, skype, location);
-
+        	profile = new Profile(mainEmail, displayName, position, phone, skype, location,office,deparment,role,responsible,starDate,profilePicture);
         }else {
             // The Profile entity already exists
             // Update the Profile entity
-            profile.update(displayName, position,phone,skype,location);
+            profile.update(displayName, position,phone,skype,location,office,deparment,role,responsible,starDate,profilePicture);
 
         }
 
@@ -355,95 +380,44 @@ public class LearnicaApi {
     }
 
     @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.GET)
-    public List<SpreadsheetEntry> getSpreadSheet() throws IOException, ServiceException { //
-      // List<Tech> List<SpreadsheetEntry>
-      //throws ServiceException,IOException
-      //https://docs.google.com/spreadsheets/d/1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98/edit?usp=sharing
-      /** List<SpreadsheetEntry>**/
+    public List<SpreadsheetEntry>  getSpreadSheet()
+    throws UnauthorizedException,GeneralSecurityException,IOException, ServiceException{
 
+      List scopes = Arrays.asList("https://spreadsheets.google.com/feeds");
       AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
-      String accessToken = appIdentity.getAccessToken(Collections.singleton(Constants.SPREADSHEET_SCOPE)).getAccessToken();
-      GoogleCredential googleCredential = new GoogleCredential();
-      googleCredential.setAccessToken(accessToken);
+      AppIdentityService.GetAccessTokenResult accessToken = appIdentity.getAccessToken(scopes);
+      Credential creds = new Credential(
+        BearerToken.authorizationHeaderAccessMethod());
+      creds.setAccessToken(accessToken.getAccessToken());
+      SpreadsheetService service = new SpreadsheetService("DBM4G-demo");
 
-      SpreadsheetService spreadsheetService = new SpreadsheetService("GAppEngine");
-      spreadsheetService.setHeader("Authorization", "Bearer " + accessToken);
-      URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/worksheets/1UXoGD2gowxZ2TY3gooI9y7rwWTPBOA0dnkeNYwUqQRA/public/full");
-      //added new line *******************************
-      spreadsheetService.getFeed(new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full?xoauth_requestor_id=test"),WorksheetFeed.class);
-      //************************
-      SpreadsheetFeed feed = spreadsheetService.getFeed(SPREADSHEET_FEED_URL, SpreadsheetFeed.class);
-      List<SpreadsheetEntry> spreadsheets = feed.getEntries();
+          URL feedUrl = null;
 
-      if (spreadsheets.size() == 0) {
-          // TODO: There were no spreadsheets, act accordingly.
-      }
+          //try{
+              feedUrl = new URL(Constants.SPREADSHEET_IDURL);
+        //  }catch(MalformedURLException e){
+        //      e.printStackTrace();
+        //  }
 
-      SpreadsheetEntry spreadsheet = spreadsheets.get(0);
-      return spreadsheets;
-
-
-      //System.out.println(spreadsheet.getTitle().getPlainText());
-      //return spreadsheet.getTitle().getPlainText();
-      /*
-        Query<Tech> query = ofy().load().type(Tech.class);
-        return query.list();
-      /*
-            URL SPREADSHEET_FEED_URL;
-             SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
-
-             File p12 = new File("./key4.p12");
-
-             HttpTransport httpTransport = new NetHttpTransport();
-             JacksonFactory jsonFactory = new JacksonFactory();
-             String[] SCOPESArray = {"https://spreadsheets.google.com/feeds", "https://spreadsheets.google.com/feeds/spreadsheets/private/full", "https://docs.google.com/feeds"};
-             final List SCOPES = Arrays.asList(SCOPESArray);
-             GoogleCredential credential = new GoogleCredential.Builder()
-                     .setTransport(httpTransport)
-                     .setJsonFactory(jsonFactory)
-                     .setServiceAccountId("912672589282-01hugt7um9thb173pa5c4kfhhjo3qi39@developer.gserviceaccount.com")
-                     .setServiceAccountScopes(SCOPES)
-                     .setServiceAccountPrivateKeyFromP12File(p12)
-                     .build();
-
-             SpreadsheetService service = new SpreadsheetService("Test");
-
-             service.setOAuth2Credentials(credential);
-             SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL, SpreadsheetFeed.class);
+      //try{
+        service.setOAuth2Credentials(creds);
+    //  } catch(UnauthorizedException e){
+    //    throw new UnauthorizedException("authorization is required");
+    //  }
+    //  try {
+             SpreadsheetFeed feed = service.getFeed(feedUrl, SpreadsheetFeed.class);
              List<SpreadsheetEntry> spreadsheets = feed.getEntries();
-             return spreadsheets;
-/*
-             if (spreadsheets.size() == 0) {
-                 System.out.println("No spreadsheets found.");
-             }
+            // if(spreadsheets != null)// {
+                //   for (SpreadsheetEntry spreadsheet : spreadsheets) {
+                //       System.out.println(spreadsheet.getTitle().getPlainText());
+                //   }
+                return spreadsheets;
+      //        }
+      //   } catch (ServiceException e) {
+      //       e.printStackTrace();
+      //   }
 
-             SpreadsheetEntry spreadsheet = null;
-             for (int i = 0; i < spreadsheets.size(); i++) {
-                 spreadsheet = spreadsheets.get(i);
-                 System.out.println(String.format("[%d] spreadsheet: %s", i, spreadsheets.get(i).getTitle().getPlainText()));
-             }
-
-             WorksheetFeed worksheetFeed = service.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
-             List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
-             WorksheetEntry worksheet = worksheets.get(0);
-
-             URL listFeedUrl = worksheet.getListFeedUrl();
-             ListFeed listFeed = service.getFeed(listFeedUrl, ListFeed.class);
-
-             // Iterate through each row, printing its cell values.
-             for (ListEntry row : listFeed.getEntries()) {
-                 // Print the first column's cell value
-                 System.out.print(row.getTitle().getPlainText() + "\t");
-                 // Iterate over the remaining columns, and print each cell value
-                 for (String tag : row.getCustomElements().getTags()) {
-                     System.out.print(row.getCustomElements().getValue(tag) + "\t");
-                 }
-                 System.out.println();
-*/
-
-
-
-    }
+}
 
 
 

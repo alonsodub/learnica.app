@@ -12,11 +12,11 @@ import com.googlecode.objectify.annotation.Id;
 // TODO indicate that this class is an Entity
 @Entity
 public class Profile {
-    
+
    // TeeShirtSize teeShirtSize;
 
 
-    // *** MOBICA PROFILE ** //b 
+    // *** MOBICA PROFILE ** //b
 	// TODO indicate that the email is to be used in the Entity's key
     @Id String email;;
     String displayName;
@@ -25,8 +25,15 @@ public class Profile {
     String skype;
     String location;
 
+    String office;
+    String deparment;
+    String role;
+    String responsible;
+    String starDate;
+    String profilePicture;
 
-    
+
+
 
     /**
      * Keys of the conferences that this user registers to attend.
@@ -38,16 +45,25 @@ public class Profile {
      * @param userId The user id, obtained from the email
      * @param displayName Any string user wants us to display him/her on this system.
      * @param mainEmail User's main e-mail address.
-     * @param 
+     * @param
      *
      */
-    public Profile (String email, String displayName, String position, String phone, String skype, String location) {
+    public Profile (String email, String displayName, String position, String phone, String skype, String location,
+    String office,String deparment,String role,String responsible,String starDate,String profilePicture) {
         this.email = email;
         this.displayName = displayName;
         this.position = position;
         this.phone = phone;
         this.skype = skype;
         this.location = location;
+
+        this.office = office;
+        this.deparment = deparment;
+        this.role = role;
+        this.responsible = responsible;
+        this.starDate = starDate;
+        this.profilePicture = profilePicture;
+
     }
 
     /**
@@ -130,8 +146,55 @@ public class Profile {
 	public String getDisplayName() {
         return displayName;
     }
+    /**
+  	 * @param
+  	 */
+  	public void setOfficeName(String office) {
+  		this.office = office;
+  	}
 
- 
+  	public String getOfficeName() {
+      return office;
+    }
+      /**
+       * @param
+       */
+    public void setDeparment(String deparment) {
+      this.deparment = deparment;
+    }
+
+    public String getDeparment() {
+        return deparment;
+        }
+
+        public void setRole(String role) {
+          this.role = role;
+        }
+
+        public String getRole() {
+            return role;
+            }
+            public void setResponsible(String responsible) {
+              this.responsible = responsible;
+            }
+
+            public String getResponsible() {
+                return responsible;
+                }
+                public void setstarDate(String starDate) {
+                  this.starDate=starDate;
+                }
+
+                public String getstarDate() {
+                    return starDate;
+                    }
+                    public void setprofilePicture(String profilePicture) {
+                      this.profilePicture = profilePicture;
+                    }
+
+                    public String getproilePicture() {
+                        return profilePicture;
+                        }
     /**
      * Getter for conferenceIdsToAttend.
      * @return an immutable copy of conferenceIdsToAttend.
@@ -149,13 +212,14 @@ public class Profile {
      * Update the Profile with the given displayName and teeShirtSize
      *
      * @param displayName
-     * @param location 
+     * @param location
      * @param skype
-     * @param phone 
-     * @param position 
+     * @param phone
+     * @param position
      * @param teeShirtSize
      */
-    public void update(String displayName, String position, String phone, String skype, String location) {
+    public void update(String displayName, String position, String phone, String skype, String location,
+    String office,String deparment,String role,String responsible,String starDate,String profilePicture) {
         if (displayName != null) {
             this.displayName = displayName;
         }
@@ -171,7 +235,24 @@ public class Profile {
         if(location != null){
         	this.location = location;
         }
-        
+        if(office!= null){
+          this.office = office;
+        }
+        if(deparment!= null){
+          this.deparment = deparment;
+        }
+        if(role!= null){
+          this.role = role;
+        }
+        if(responsible!= null){
+          this.responsible = responsible;
+        }
+        if(starDate!= null){
+          this.starDate =starDate;
+        }
+        if(profilePicture!= null){
+          this.profilePicture =profilePicture ;
+        }
     }
 
     /**

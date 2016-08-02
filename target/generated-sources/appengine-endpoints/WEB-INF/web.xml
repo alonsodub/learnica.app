@@ -18,9 +18,12 @@
         <web-resource-collection>
             <web-resource-name>all</web-resource-name>
             <url-pattern>/*</url-pattern>
+            <include path="/**.p12"/>
+            <include path="/**.json"/>
         </web-resource-collection>
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+
 </web-app>

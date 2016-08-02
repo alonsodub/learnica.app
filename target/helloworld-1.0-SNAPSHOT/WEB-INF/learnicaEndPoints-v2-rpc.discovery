@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/GMb_zGNR2v4bEf0ROeIERd4j6kw\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/43trhYXjastFlBddZo3b2ZCIRIY\"",
  "discoveryVersion": "v1",
  "id": "learnicaEndPoints:v2",
  "name": "learnicaEndPoints",
@@ -314,6 +314,42 @@
      "type": "string"
     }
    }
+  },
+  "Test": {
+   "id": "Test",
+   "type": "object",
+   "properties": {
+    "amount": {
+     "type": "string"
+    },
+    "cost": {
+     "type": "string"
+    },
+    "description": {
+     "type": "string"
+    },
+    "quantity": {
+     "type": "string"
+    },
+    "type": {
+     "type": "string"
+    },
+    "unit": {
+     "type": "string"
+    }
+   }
+  },
+  "TestCollection": {
+   "id": "TestCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Test"
+     }
+    }
+   }
   }
  },
  "methods": {
@@ -429,7 +465,7 @@
    "id": "learnicaEndPoints.getSpreadSheet",
    "allowGet": true,
    "returns": {
-    "$ref": "TechCollection"
+    "$ref": "TestCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
