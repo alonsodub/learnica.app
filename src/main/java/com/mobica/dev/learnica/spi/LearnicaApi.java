@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.inject.Named;
 import java.net.URL;
+import java.lang.System;
 //import com.google.appengine.api.appidentity;
 //import com.google.apphosting.api.ApiProxy;
 import com.google.appengine.api.appidentity.AppIdentityService;
@@ -365,22 +366,22 @@ public class LearnicaApi {
     }
 
     @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.POST)
-    public List<Tech> getSpreadSheet(final User user) throws UnauthorizedException  {
+    public List<SpreadsheetEntry> getSpreadSheet(final User user) throws UnauthorizedException,
+    GeneralSecurityException,IOException, ServiceExceptions{
       if (user == null)
         throw new UnauthorizedException("authorization is required");
-        Query<Tech> query = ofy().load().type(Tech.class);
-        return query.list();
+        //Query<Tech> query = ofy().load().type(Tech.class);
+        //return query.list();
 
-      /* throws UnauthorizedException,GeneralSecurityException,IOException, ServiceException
-      List<SpreadsheetEntry>
+      /* throws UnauthorizedException,
+      List<SpreadsheetEntry>* List<Tech>*/
       List scopes = Arrays.asList("https://spreadsheets.google.com/feeds");
       AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
       AppIdentityService.GetAccessTokenResult accessToken = appIdentity.getAccessToken(scopes);
       Credential creds = new Credential(
         BearerToken.authorizationHeaderAccessMethod());
       creds.setAccessToken(accessToken.getAccessToken());
-      SpreadsheetService service = new SpreadsheetService("DBM4G-demo");
-
+      SpreadsheetService service = new SpreadsheetService("learnica-demo");
           URL feedUrl = null;
 
           //try{
@@ -397,10 +398,12 @@ public class LearnicaApi {
     //  try {
              SpreadsheetFeed feed = service.getFeed(feedUrl, SpreadsheetFeed.class);
              List<SpreadsheetEntry> spreadsheets = feed.getEntries();
-            // if(spreadsheets != null)// {
-                //   for (SpreadsheetEntry spreadsheet : spreadsheets) {
-                //       System.out.println(spreadsheet.getTitle().getPlainText());
-                //   }
+            if(spreadsheets != null)// {
+                  for (SpreadsheetEntry spreadsheet : spreadsheets) {
+                    //java.lang.System.out.println(...)
+                      System.out.println(spreadsheet.getTitle().getPlainText());
+                 }
+
                 return spreadsheets;
       //        }
       //   } catch (ServiceException e) {
