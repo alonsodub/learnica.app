@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/RNoTw5fS9S_QfrFl50rm_vyhnkQ\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/gniW8rp6YOKJPqHq69hV6Seq2sI\"",
  "discoveryVersion": "v1",
  "id": "learnicaEndPoints:dev",
  "name": "learnicaEndPoints",
@@ -474,7 +474,7 @@
   "getSpreadSheet": {
    "id": "learnicaEndPoints.getSpreadSheet",
    "path": "SpreadSheet",
-   "httpMethod": "GET",
+   "httpMethod": "POST",
    "response": {
     "$ref": "TechCollection"
    },

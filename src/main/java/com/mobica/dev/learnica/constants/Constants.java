@@ -25,7 +25,7 @@ public class Constants {                    //1042909630422-8me3vdutp6k21cl8crc5
   public static final String SPREADSHEET_SCOPE= "'https://www.googleapis.com/auth/drive','https://spreadsheets.google.com/feeds','https://docs.google.com/feeds'";
   //"https://docs.google.com/spreadsheets/d/1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98/edit?usp=sharing";
 
-
+  public static final String SPREADSHEET_IDURL = "https://spreadsheets.google.com/feeds/spreadsheets/private/full/";
   public static final String SPREADSHEET = "1cbjIOx8-622sX_1RdxP2zMNEBfPdKEUf6wJ_zLznP98";
   public static final String ANDROID_AUDIENCE = WEB_CLIENT_ID; //ANDROID_CLIENT_ID
   public static final String IOS_AUDIENCE = WEB_CLIENT_ID; //ANDROID_CLIENT_ID

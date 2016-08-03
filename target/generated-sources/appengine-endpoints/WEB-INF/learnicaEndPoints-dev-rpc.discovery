@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/RNoTw5fS9S_QfrFl50rm_vyhnkQ\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/gniW8rp6YOKJPqHq69hV6Seq2sI\"",
  "discoveryVersion": "v1",
  "id": "learnicaEndPoints:dev",
  "name": "learnicaEndPoints",
@@ -463,7 +463,6 @@
   },
   "learnicaEndPoints.getSpreadSheet": {
    "id": "learnicaEndPoints.getSpreadSheet",
-   "allowGet": true,
    "returns": {
     "$ref": "TechCollection"
    },

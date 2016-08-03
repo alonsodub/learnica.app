@@ -25,6 +25,8 @@ import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
 import java.security.GeneralSecurityException;
 
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.auth.oauth2.BearerToken;
 
 //import javax.xml.rpc.ServiceException;
 
@@ -361,14 +363,51 @@ public class LearnicaApi {
         return query.list();
 
     }
-    @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.GET)
-      public List<Tech>  getSpreadSheet() throws IOException, ServiceException { //
 
+    @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.POST)
+    public List<Tech> getSpreadSheet(final User user) throws UnauthorizedException  {
+      if (user == null)
+        throw new UnauthorizedException("authorization is required");
         Query<Tech> query = ofy().load().type(Tech.class);
-          return query.list();
+        return query.list();
 
-      }
+      /* throws UnauthorizedException,GeneralSecurityException,IOException, ServiceException
+      List<SpreadsheetEntry>
+      List scopes = Arrays.asList("https://spreadsheets.google.com/feeds");
+      AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
+      AppIdentityService.GetAccessTokenResult accessToken = appIdentity.getAccessToken(scopes);
+      Credential creds = new Credential(
+        BearerToken.authorizationHeaderAccessMethod());
+      creds.setAccessToken(accessToken.getAccessToken());
+      SpreadsheetService service = new SpreadsheetService("DBM4G-demo");
 
+          URL feedUrl = null;
+
+          //try{
+              feedUrl = new URL(Constants.SPREADSHEET_IDURL);
+        //  }catch(MalformedURLException e){
+        //      e.printStackTrace();
+        //  }
+
+      //try{
+        service.setOAuth2Credentials(creds);
+    //  } catch(UnauthorizedException e){
+    //    throw new UnauthorizedException("authorization is required");
+    //  }
+    //  try {
+             SpreadsheetFeed feed = service.getFeed(feedUrl, SpreadsheetFeed.class);
+             List<SpreadsheetEntry> spreadsheets = feed.getEntries();
+            // if(spreadsheets != null)// {
+                //   for (SpreadsheetEntry spreadsheet : spreadsheets) {
+                //       System.out.println(spreadsheet.getTitle().getPlainText());
+                //   }
+                return spreadsheets;
+      //        }
+      //   } catch (ServiceException e) {
+      //       e.printStackTrace();
+      //   }*/
+
+}
 
 
 
