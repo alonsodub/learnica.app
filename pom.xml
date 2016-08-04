@@ -40,11 +40,11 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
-		<dependency>
-			<groupId>com.googlecode.objectify</groupId>
-			<artifactId>objectify</artifactId>
-			<version>5.0</version>
-		</dependency>
+		    <dependency>
+			    <groupId>com.googlecode.objectify</groupId>
+			      <artifactId>objectify</artifactId>
+			      <version>5.0</version>
+		    </dependency>
         <!-- Test Dependencies -->
         <dependency>
             <groupId>junit</groupId>
@@ -97,9 +97,13 @@
             <artifactId>google-http-client-jackson</artifactId>
             <version>1.15.0-rc</version>
         </dependency>
-
-      </dependencies>
-
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-drive</artifactId>
+            <version>v2-rev231-1.22.0</version>
+          </dependency>
+    </dependencies>
+    
     <build>
         <!-- for hot reload of the web application-->
         <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>

@@ -17,15 +17,18 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
 import com.google.gdata.client.spreadsheet.FeedURLFactory;
 import com.google.gdata.util.ServiceException;
-
+//import com.google.gdata.util.ServiceException;
 //import com.google.gdata.client.spreadsheet.SpreadsheetService;
 //import com.google.gdata.data.spreadsheet.ListFeed;
 import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.ListFeed;
+import com.google.gdata.data.spreadsheet.ListEntry;
 import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
+import com.google.gdata.client.spreadsheet.SpreadsheetQuery;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
+import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import java.security.GeneralSecurityException;
-
+import com.google.api.services.drive.Drive;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.BearerToken;
 
@@ -97,6 +100,8 @@ import javax.servlet.http.HttpServletResponse;
   audiences = {Constants.ANDROID_AUDIENCE},
   description = "API for the Lernica Backend application :P")
 public class LearnicaApi {
+//  public static FeedURLFactory factory = FeedURLFactory.getDefault();
+//  public static SpreadsheetService spreadsheetService= new SpreadsheetService("evermedcpr");
 
     /*
      * Get the display name from the user's email. For example, if the email is
@@ -364,51 +369,78 @@ public class LearnicaApi {
         return query.list();
 
     }
+    @ApiMethod(name="getPicture",path ="ProfilePicture", httpMethod = HttpMethod.POST)
+    public List<File>   getPicture(final User user) throws UnauthorizedException{
+      if (user == null) //List<File>
+        throw new UnauthorizedException("authorization is required");
+      List scopes = Arrays.asList("https://www.googleapis.com/auth/drive");
+      AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
+      AppIdentityService.GetAccessTokenResult accessToken = appIdentity.getAccessToken(scopes);
+      Credential creds = new Credential(BearerToken.authorizationHeaderAccessMethod());
+        creds.setAccessToken(accessToken.getAccessToken());
+      Drive service = new Drive("service");
+      List<File> request = service.files().list();
 
+
+      return request;
+    }
     @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.POST)
-    public List<SpreadsheetEntry> getSpreadSheet(final User user) throws UnauthorizedException,
-    GeneralSecurityException,IOException, ServiceExceptions{
+    public List<Tech> getSpreadSheet(final User user) throws UnauthorizedException,
+    GeneralSecurityException, IOException, Exception,ServiceException{
       if (user == null)
         throw new UnauthorizedException("authorization is required");
-        //Query<Tech> query = ofy().load().type(Tech.class);
-        //return query.list();
-
-      /* throws UnauthorizedException,
-      List<SpreadsheetEntry>* List<Tech>*/
       List scopes = Arrays.asList("https://spreadsheets.google.com/feeds");
       AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
       AppIdentityService.GetAccessTokenResult accessToken = appIdentity.getAccessToken(scopes);
-      Credential creds = new Credential(
-        BearerToken.authorizationHeaderAccessMethod());
-      creds.setAccessToken(accessToken.getAccessToken());
-      SpreadsheetService service = new SpreadsheetService("learnica-demo");
-          URL feedUrl = null;
+      Credential creds = new Credential(BearerToken.authorizationHeaderAccessMethod());
+        creds.setAccessToken(accessToken.getAccessToken());
+      SpreadsheetService spreadsheetService = new SpreadsheetService("DBM4G-demo");
+      spreadsheetService.setOAuth2Credentials(creds);
 
-          //try{
-              feedUrl = new URL(Constants.SPREADSHEET_IDURL);
-        //  }catch(MalformedURLException e){
-        //      e.printStackTrace();
-        //  }
+        //return getSpreadsheet(spreadsheetName);
 
-      //try{
-        service.setOAuth2Credentials(creds);
-    //  } catch(UnauthorizedException e){
-    //    throw new UnauthorizedException("authorization is required");
-    //  }
-    //  try {
-             SpreadsheetFeed feed = service.getFeed(feedUrl, SpreadsheetFeed.class);
-             List<SpreadsheetEntry> spreadsheets = feed.getEntries();
-            if(spreadsheets != null)// {
-                  for (SpreadsheetEntry spreadsheet : spreadsheets) {
-                    //java.lang.System.out.println(...)
-                      System.out.println(spreadsheet.getTitle().getPlainText());
-                 }
 
-                return spreadsheets;
-      //        }
-      //   } catch (ServiceException e) {
-      //       e.printStackTrace();
-      //   }*/
+        ///public SpreadsheetEntry getSpreadsheet(String spreadsheet)
+        //      throws Exception {
+
+//        SpreadsheetQuery spreadsheetQuery = new SpreadsheetQuery(new URL("https://spreadsheets.google.com/feeds/spreadsheets"));
+//        spreadsheetQuery.setTitleQuery("test");
+
+
+        SpreadsheetQuery spreadsheetQuery = new SpreadsheetQuery(new URL("https://spreadsheets.google.com/feeds/spreadsheets"));
+        SpreadsheetFeed spreadsheetFeed = spreadsheetService.query(spreadsheetQuery,SpreadsheetFeed.class);
+        List<SpreadsheetEntry> spreadsheets = spreadsheetFeed.getEntries();
+        if (!spreadsheets.isEmpty()) {
+                //throw new Exception("No spreadsheets with that name");
+//                String name = spreadsheets.get
+                SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+                //WorksheetFeed worksheetFeed =
+                WorksheetFeed worksheetFeed = spreadsheetService.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+                List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
+                WorksheetEntry worksheet = worksheets.get(0);
+                URL listFeedUrl = worksheet.getListFeedUrl();
+                ListFeed listFeed = spreadsheetService.getFeed(listFeedUrl, ListFeed.class);
+                String columns = "";
+                // Iterate through each row, printing its cell values.
+                for (ListEntry row : listFeed.getEntries()) {
+                           // Print the first column's cell value
+                           columns= row.getTitle().getPlainText() + "\t";
+                           // Iterate over the remaining columns, and print each cell value
+                           /*for (String tag : row.getCustomElements().getTags()) {
+                               System.out.print(row.getCustomElements().getValue(tag) + "\t");
+                           }
+                           System.out.println();*/
+                       }
+                throw new Exception(columns);
+                //throw new Exception(spreadsheets.get(0));
+        }
+        /*else {*/
+          Query<Tech> query = ofy().load().type(Tech.class);
+            return query.list();
+        /*}*/
+      //  return spreadsheets.get(0);/**/
+        //  }*/
+
 
 }
 

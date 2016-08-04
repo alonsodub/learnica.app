@@ -212,6 +212,12 @@ learnicaApp.controllers.controller('MyProfileCtrl',
             $scope.submitted = true;
             $scope.loading = true;
             alert($scope.profile);
+
+
+
+
+
+
 /**
 String mainEmail = newProfileForm.getEmail();
 //String userId = user.getUserId();
@@ -412,6 +418,34 @@ $scope.addSkill = function(){
 
 
 });
+
+/**
+ * @ngdoc controller
+ * @name ProfileCatalogCtrl
+ *
+ * @description
+ * The controller get a list of profile elements
+ * it require user authentication.
+ *
+ */
+
+
+learnicaApp.controllers.controller('ProfileCatalogCtrl',
+function ($scope, $log, oauth2Provider,mainData, HTTP_ERRORS){
+  gapi.client.learnicaEndPoints.getProfileCatalog().
+  execute(function(resp){
+    if(resp.error)
+      alert("getProfileCatalog fail!");
+   else
+      //$scope.profileCatalog = resp.items;
+      alert(resp.items);
+    } );
+});
+
+
+
+
+
 /**
  * @ngdoc controller
  * @name RootCtrl

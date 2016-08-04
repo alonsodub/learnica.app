@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/gniW8rp6YOKJPqHq69hV6Seq2sI\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/0lwv0yvO2Jg7kTTq3ZSE7DBytzU\"",
  "discoveryVersion": "v1",
  "id": "learnicaEndPoints:dev",
  "name": "learnicaEndPoints",
@@ -398,6 +398,15 @@
   },
   "learnicaEndPoints.getAllTechs": {
    "id": "learnicaEndPoints.getAllTechs",
+   "returns": {
+    "$ref": "TechCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getPicture": {
+   "id": "learnicaEndPoints.getPicture",
    "returns": {
     "$ref": "TechCollection"
    },

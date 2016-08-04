@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableList;
 //import com.google.devrel.training.conference.form.ProfileForm.TeeShirtSize;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 
 // TODO indicate that this class is an Entity
@@ -19,7 +20,7 @@ public class Profile {
     // *** MOBICA PROFILE ** //b
 	// TODO indicate that the email is to be used in the Entity's key
     @Id String email;;
-    String displayName;
+    @Index String displayName;
     String position;
     String phone;
     String skype;
