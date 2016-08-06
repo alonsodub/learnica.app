@@ -28,7 +28,12 @@ import com.google.gdata.client.spreadsheet.SpreadsheetQuery;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import java.security.GeneralSecurityException;
+
 import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.Drive.Files;
+import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.BearerToken;
 
@@ -38,7 +43,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson.JacksonFactory;
 import java.util.Arrays;
-import java.io.File;
+//import java.io.File;
 import java.io.IOException;
 
 //import com.google.api.services.sheets.v4.SheetsScopes;
@@ -369,19 +374,38 @@ public class LearnicaApi {
         return query.list();
 
     }
+    //,@Named("userEmail") final String userEmail
     @ApiMethod(name="getPicture",path ="ProfilePicture", httpMethod = HttpMethod.POST)
-    public List<File>   getPicture(final User user) throws UnauthorizedException{
-      if (user == null) //List<File>
+    public  FileList getPicture(final User user)
+    throws UnauthorizedException,IOException,Exception{ //Drive.Files.List, List<File>
+      if (user == null)
         throw new UnauthorizedException("authorization is required");
-      List scopes = Arrays.asList("https://www.googleapis.com/auth/drive");
+      //List<File> result = new ArrayList<File>();
+      List scopes = Arrays.asList("https://www.googleapis.com/auth/drive","https://www.googleapis.com/auth/drive.file");
+      HttpTransport httpTransport = new NetHttpTransport();
+      JacksonFactory jsonFactory = new JacksonFactory();
       AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
       AppIdentityService.GetAccessTokenResult accessToken = appIdentity.getAccessToken(scopes);
-      Credential creds = new Credential(BearerToken.authorizationHeaderAccessMethod());
-        creds.setAccessToken(accessToken.getAccessToken());
-      Drive service = new Drive("service");
-      List<File> request = service.files().list();
+      Credential credential = new Credential(BearerToken.authorizationHeaderAccessMethod());
+        credential.setAccessToken(accessToken.getAccessToken());
+      /*Drive service = new Drive().
+       .setHttpRequestInitializer(credential)
+       .build();*/
+    //  Drive service = new Drive.Builder(httpTransport, jsonFactory, creds).build();
+      Drive service = new Drive.Builder(httpTransport, jsonFactory, null)
+         .setHttpRequestInitializer(credential).build();
 
-
+         FileList request = service.files().list().execute();
+         if (request.isEmpty()){
+           //20150907142815907.jpg//
+             throw new Exception("request is Empty()");
+         }
+      /*
+      for(File file: request.getFiles()) {
+        if (file.getName() == "20150907142815907.jpg" )
+          throw new Exception("file --20150907142815907.jpg-- was found");
+      }
+      */
       return request;
     }
     @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.POST)

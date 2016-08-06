@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/0lwv0yvO2Jg7kTTq3ZSE7DBytzU\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/ir7dAraBeB2yPsPZJ1jU2cLt8Ho\"",
  "discoveryVersion": "v1",
  "id": "learnicaEndPoints:dev",
  "name": "learnicaEndPoints",
@@ -69,6 +69,10 @@
   }
  },
  "schemas": {
+  "JsonMap": {
+   "id": "JsonMap",
+   "type": "object"
+  },
   "Profile": {
    "id": "Profile",
    "type": "object",
@@ -408,7 +412,7 @@
   "learnicaEndPoints.getPicture": {
    "id": "learnicaEndPoints.getPicture",
    "returns": {
-    "$ref": "TechCollection"
+    "$ref": "JsonMap"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
