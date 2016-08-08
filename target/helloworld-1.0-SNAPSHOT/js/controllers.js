@@ -38,7 +38,9 @@ learnicaApp.controllers.factory('mainData',function(){
 learnicaApp.controllers.controller('AdminSkillMatrixCtrl',
     function ($scope, $log, oauth2Provider, HTTP_ERRORS) {
       gapi.client.learnicaEndPoints.getProfileCatalog().execute(function (resp) {
+        alert(resp.items);
         $scope.profiles=resp.items;
+
       });
 
       $scope.officeLocation = [
@@ -431,7 +433,7 @@ $scope.addSkill = function(){
 
 
 learnicaApp.controllers.controller('ProfileCatalogCtrl',
-function ($scope, $log, oauth2Provider,mainData, HTTP_ERRORS){
+function ($scope, $log, oauth2Provider,mainData, HTTP_ERRORS){// learnicaEndPoints.getProfileCatalog
   gapi.client.learnicaEndPoints.getProfileCatalog().
   execute(function(resp){
     if(resp.error)
