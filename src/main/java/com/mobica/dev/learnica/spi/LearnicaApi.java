@@ -1,4 +1,4 @@
-oopackage com.mobica.dev.learnica.spi;
+package com.mobica.dev.learnica.spi;
 
 
 import static com.mobica.dev.learnica.service.OfyService.ofy;
@@ -393,18 +393,18 @@ public class LearnicaApi {
        .build();*/
     //  Drive service = new Drive.Builder(httpTransport, jsonFactory, creds).build(); setHttpRequestInitializer(credential).setApplicationName("Drive Conector")
       Drive service = new Drive.Builder(httpTransport, jsonFactory, credential).build();
-      String folder = "mimeType = 'application/vnd.google-apps.folder' and title = 'ProfilePictures'";
-      String folderId = ""
-      Files.List request = service.files().list().setQ("'" + folderId + "' in parents and trashed = false");
+    //  String folder = "mimeType = 'application/vnd.google-apps.folder' and title = 'ProfilePictures'";
+    //  String folderId = "";
+    //  Files.List request = service.files().list().setQ("'" + folderId + "' in parents and trashed = false").execute();
 
-         //FileList request = service.files().list().execute();
+      FileList request = service.files().list().execute();
          // Print the names and IDs for up to 10 files.
-      //  FileList result = service.files().list().execute();
-            // .setPageSize(10)
-            // .setFields("nextPageToken, files(id, name)")
+         //  FileList result = service.files().list().execute();
+         // .setPageSize(10)
+         // .setFields("nextPageToken, files(id, name)")
 
       //  List<File> files = result.getFiles();
-        List<File> files = result.getItems();//new ArrayList<File>();
+        List<File> files = request.getItems();//new ArrayList<File>();
         //files.add(result.getItems());
       //  if (files == null || files.size() == 0) {
       //              throw new Exception("No files found.");
