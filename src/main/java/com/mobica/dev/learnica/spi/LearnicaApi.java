@@ -1,10 +1,10 @@
-package com.mobica.dev.learnica.spi;
+oopackage com.mobica.dev.learnica.spi;
 
 
 import static com.mobica.dev.learnica.service.OfyService.ofy;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import javax.inject.Named;
 import java.net.URL;
 import java.lang.System;
@@ -376,7 +376,7 @@ public class LearnicaApi {
     }
     //,@Named("userEmail") final String userEmail
     @ApiMethod(name="getPicture",path ="ProfilePicture", httpMethod = HttpMethod.POST)
-    public  FileList getPicture(final User user)
+    public  List<File> getPicture(final User user)
     throws UnauthorizedException,IOException,Exception{ //Drive.Files.List, List<File>
       if (user == null)
         throw new UnauthorizedException("authorization is required");
@@ -391,25 +391,47 @@ public class LearnicaApi {
       /*Drive service = new Drive().
        .setHttpRequestInitializer(credential)
        .build();*/
-    //  Drive service = new Drive.Builder(httpTransport, jsonFactory, creds).build();
-      Drive service = new Drive.Builder(httpTransport, jsonFactory, null)
-         .setHttpRequestInitializer(credential).build();
+    //  Drive service = new Drive.Builder(httpTransport, jsonFactory, creds).build(); setHttpRequestInitializer(credential).setApplicationName("Drive Conector")
+      Drive service = new Drive.Builder(httpTransport, jsonFactory, credential).build();
+      String folder = "mimeType = 'application/vnd.google-apps.folder' and title = 'ProfilePictures'";
+      String folderId = ""
+      Files.List request = service.files().list().setQ("'" + folderId + "' in parents and trashed = false");
 
-         FileList request = service.files().list().execute();
-         if (request.isEmpty()){
-           //20150907142815907.jpg//
-             throw new Exception("request is Empty()");
-         }
+         //FileList request = service.files().list().execute();
+         // Print the names and IDs for up to 10 files.
+      //  FileList result = service.files().list().execute();
+            // .setPageSize(10)
+            // .setFields("nextPageToken, files(id, name)")
+
+      //  List<File> files = result.getFiles();
+        List<File> files = result.getItems();//new ArrayList<File>();
+        //files.add(result.getItems());
+      //  if (files == null || files.size() == 0) {
+      //              throw new Exception("No files found.");
+        //} else {
+        if(files.size() > 0)
+              throw new Exception("file list");
+      //  }
+        return files;//.size();
+        }
+          //          System.out.println("Files:");
+          /*          for (File file : files) {
+                        throw new Exception( "file" +file.getName() +","+ file.getId());
+                    }
+                  } */
+        // if (request.isEmpty()){
+           //20150907142815907.jpg// request is Empty()"); }
       /*
       for(File file: request.getFiles()) {
         if (file.getName() == "20150907142815907.jpg" )
           throw new Exception("file --20150907142815907.jpg-- was found");
       }
       */
-      return request;
-    }
+    //  return request;
+
+
     @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.POST)
-    public List<Tech> getSpreadSheet(final User user) throws UnauthorizedException,
+    public List<Tech> getSpreadSheet(final User user)throws UnauthorizedException,
     GeneralSecurityException, IOException, Exception,ServiceException{
       if (user == null)
         throw new UnauthorizedException("authorization is required");

@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/ir7dAraBeB2yPsPZJ1jU2cLt8Ho\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/cJLDQuXtoRp-XHq9pWfnmJ3njIM\"",
  "discoveryVersion": "v1",
  "id": "learnicaEndPoints:dev",
  "name": "learnicaEndPoints",
@@ -74,6 +74,18 @@
   "JsonMap": {
    "id": "JsonMap",
    "type": "object"
+  },
+  "JsonMapCollection": {
+   "id": "JsonMapCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "JsonMap"
+     }
+    }
+   }
   },
   "Profile": {
    "id": "Profile",
@@ -416,7 +428,7 @@
    "path": "ProfilePicture",
    "httpMethod": "POST",
    "response": {
-    "$ref": "JsonMap"
+    "$ref": "JsonMapCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

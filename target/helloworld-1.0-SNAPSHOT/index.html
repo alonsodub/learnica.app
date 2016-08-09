@@ -28,7 +28,7 @@
          */
         function init() {
             gapi.client.load('learnicaEndPoints', 'dev',loadSucced , '//' + window.location.host + '/_ah/api');
-            gapi.client.load('oauth2', '1', function () {
+            gapi.client.load('oauth2', 'v2', function () {
                 angular.bootstrap(document, ['learnicaApp']);
             });
         };
