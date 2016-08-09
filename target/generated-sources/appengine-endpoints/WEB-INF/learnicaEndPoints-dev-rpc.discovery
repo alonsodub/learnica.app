@@ -1,0 +1,578 @@
+{
+ "kind": "discovery#rpcDescription",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/cJLDQuXtoRp-XHq9pWfnmJ3njIM\"",
+ "discoveryVersion": "v1",
+ "id": "learnicaEndPoints:dev",
+ "name": "learnicaEndPoints",
+ "version": "dev",
+ "description": "API for the Lernica Backend application :P",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rpc",
+ "rootUrl": "https://learnica-gold.appspot.com/_ah/api/",
+ "rpcUrl": "https://learnica-gold.appspot.com/_ah/api/rpc",
+ "rpcPath": "/_ah/api/rpc",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "JsonMap": {
+   "id": "JsonMap",
+   "type": "object"
+  },
+  "JsonMapCollection": {
+   "id": "JsonMapCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "JsonMap"
+     }
+    }
+   }
+  },
+  "Profile": {
+   "id": "Profile",
+   "type": "object",
+   "properties": {
+    "contactImg": {
+     "type": "string"
+    },
+    "department": {
+     "type": "string"
+    },
+    "displayName": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "location": {
+     "type": "string"
+    },
+    "office": {
+     "type": "string"
+    },
+    "phone": {
+     "type": "string"
+    },
+    "position": {
+     "type": "string"
+    },
+    "responsible": {
+     "type": "string"
+    },
+    "role": {
+     "type": "string"
+    },
+    "skype": {
+     "type": "string"
+    },
+    "starDate": {
+     "type": "string"
+    }
+   }
+  },
+  "ProfileCollection": {
+   "id": "ProfileCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Profile"
+     }
+    }
+   }
+  },
+  "ProfileForm": {
+   "id": "ProfileForm",
+   "type": "object",
+   "properties": {
+    "contactImg": {
+     "type": "string"
+    },
+    "department": {
+     "type": "string"
+    },
+    "displayName": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "location": {
+     "type": "string"
+    },
+    "office": {
+     "type": "string"
+    },
+    "phone": {
+     "type": "string"
+    },
+    "position": {
+     "type": "string"
+    },
+    "responsible": {
+     "type": "string"
+    },
+    "role": {
+     "type": "string"
+    },
+    "skype": {
+     "type": "string"
+    },
+    "starDate": {
+     "type": "string"
+    }
+   }
+  },
+  "Skill": {
+   "id": "Skill",
+   "type": "object",
+   "properties": {
+    "compositeKey": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string"
+    },
+    "level": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  },
+  "SkillCatalog": {
+   "id": "SkillCatalog",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    }
+   }
+  },
+  "SkillCatalogCollection": {
+   "id": "SkillCatalogCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "SkillCatalog"
+     }
+    }
+   }
+  },
+  "SkillCatalogForm": {
+   "id": "SkillCatalogForm",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    }
+   }
+  },
+  "SkillCollection": {
+   "id": "SkillCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Skill"
+     }
+    }
+   }
+  },
+  "SkillForm": {
+   "id": "SkillForm",
+   "type": "object",
+   "properties": {
+    "email": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string"
+    },
+    "level": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  },
+  "Tech": {
+   "id": "Tech",
+   "type": "object",
+   "properties": {
+    "compositeKey": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string"
+    },
+    "level": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  },
+  "TechCatalog": {
+   "id": "TechCatalog",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    }
+   }
+  },
+  "TechCatalogCollection": {
+   "id": "TechCatalogCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "TechCatalog"
+     }
+    }
+   }
+  },
+  "TechCatalogForm": {
+   "id": "TechCatalogForm",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    }
+   }
+  },
+  "TechCollection": {
+   "id": "TechCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Tech"
+     }
+    }
+   }
+  },
+  "TechForm": {
+   "id": "TechForm",
+   "type": "object",
+   "properties": {
+    "email": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string"
+    },
+    "level": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  }
+ },
+ "methods": {
+  "learnicaEndPoints.addSkill": {
+   "id": "learnicaEndPoints.addSkill",
+   "parameters": {
+    "resource": {
+     "$ref": "SkillForm"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Skill"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.addTech": {
+   "id": "learnicaEndPoints.addTech",
+   "parameters": {
+    "resource": {
+     "$ref": "TechForm"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Tech"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getAllSkills": {
+   "id": "learnicaEndPoints.getAllSkills",
+   "returns": {
+    "$ref": "SkillCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getAllTechs": {
+   "id": "learnicaEndPoints.getAllTechs",
+   "returns": {
+    "$ref": "TechCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getPicture": {
+   "id": "learnicaEndPoints.getPicture",
+   "returns": {
+    "$ref": "JsonMapCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getProfile": {
+   "id": "learnicaEndPoints.getProfile",
+   "parameters": {
+    "userEmail": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "userEmail"
+   ],
+   "returns": {
+    "$ref": "ProfileCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getProfileCatalog": {
+   "id": "learnicaEndPoints.getProfileCatalog",
+   "allowGet": true,
+   "returns": {
+    "$ref": "ProfileCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getSkillCatalog": {
+   "id": "learnicaEndPoints.getSkillCatalog",
+   "allowGet": true,
+   "returns": {
+    "$ref": "SkillCatalogCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getSkills": {
+   "id": "learnicaEndPoints.getSkills",
+   "parameters": {
+    "userEmail": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "userEmail"
+   ],
+   "returns": {
+    "$ref": "SkillCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getSpreadSheet": {
+   "id": "learnicaEndPoints.getSpreadSheet",
+   "returns": {
+    "$ref": "TechCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getTech": {
+   "id": "learnicaEndPoints.getTech",
+   "parameters": {
+    "userEmail": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "userEmail"
+   ],
+   "returns": {
+    "$ref": "TechCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.getTechCatalog": {
+   "id": "learnicaEndPoints.getTechCatalog",
+   "allowGet": true,
+   "returns": {
+    "$ref": "TechCatalogCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.saveProfile": {
+   "id": "learnicaEndPoints.saveProfile",
+   "parameters": {
+    "resource": {
+     "$ref": "ProfileForm"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Profile"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.setSkillCatalog": {
+   "id": "learnicaEndPoints.setSkillCatalog",
+   "parameters": {
+    "resource": {
+     "$ref": "SkillCatalogForm"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "SkillCatalog"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "learnicaEndPoints.setTechCatalog": {
+   "id": "learnicaEndPoints.setTechCatalog",
+   "parameters": {
+    "resource": {
+     "$ref": "TechCatalogForm"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "TechCatalog"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  }
+ }
+}

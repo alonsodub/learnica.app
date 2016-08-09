@@ -13,6 +13,7 @@ public class ProfileForm {
     private String email;
     private String skype;
     private String location;
+<<<<<<< HEAD
 
     private String office;
     private String deparment;
@@ -21,6 +22,14 @@ public class ProfileForm {
     private String starDate;
     private String profilePicture;
 
+=======
+    private String office;
+    private String role;
+    private String contactImg;
+    private String department;
+    private String responsible;
+    private String starDate;
+>>>>>>> dev
 
     private ProfileForm () {}
 
@@ -29,8 +38,13 @@ public class ProfileForm {
      * @param displayName A String for displaying the user on this system.
      * @param notificationEmail An e-mail address for getting notifications from this system.
      */
+<<<<<<< HEAD
     public ProfileForm(String displayName,String position,String phone, String email, String skype, String location,
     String office,String deparment,String role,String responsible,String starDate,String profilePicture) {
+=======
+    public ProfileForm(String displayName,String position,String phone, String email, String skype, String location,String office, String role,
+    String contactImg,String department,String responsible,String starDate) {
+>>>>>>> dev
         this.displayName = displayName;
         this.position = position;
         this.phone = phone;
@@ -38,11 +52,19 @@ public class ProfileForm {
         this.skype = skype;
         this.location = location;
         this.office = office;
+<<<<<<< HEAD
         this.deparment = deparment;
         this.role = role;
         this.responsible = responsible;
         this.starDate = starDate;
         this.profilePicture = profilePicture;
+=======
+        this.role = role;
+        this.contactImg = contactImg;
+        this.department = department;
+        this.responsible=responsible;
+        this.starDate=starDate;
+>>>>>>> dev
     }
 
     public String getDisplayName() {
@@ -66,6 +88,7 @@ public class ProfileForm {
     public String getOffice() {
         return office;
     }
+<<<<<<< HEAD
     public String getDepartment() {
         return deparment;
     }
@@ -83,4 +106,21 @@ public class ProfileForm {
     }
 
 
+=======
+    public String getRole() {
+        return role;
+    }
+    public String getContactImg() {
+        return contactImg;
+    }
+    public String getDepartment() {
+        return department;
+    }
+    public String getResponsible() {
+        return responsible;
+    }
+    public String getStarDate() {
+        return starDate;
+    }
+>>>>>>> dev
 }

@@ -1,12 +1,13 @@
-package com.mobica.dev.learnica.spi;
+oopackage com.mobica.dev.learnica.spi;
 
 
 import static com.mobica.dev.learnica.service.OfyService.ofy;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import javax.inject.Named;
 import java.net.URL;
+import java.lang.System;
 //import com.google.appengine.api.appidentity;
 //import com.google.apphosting.api.ApiProxy;
 import com.google.appengine.api.appidentity.AppIdentityService;
@@ -20,19 +21,33 @@ import com.google.api.client.auth.oauth2.BearerToken;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
 import com.google.gdata.client.spreadsheet.FeedURLFactory;
 import com.google.gdata.util.ServiceException;
-
+//import com.google.gdata.util.ServiceException;
 //import com.google.gdata.client.spreadsheet.SpreadsheetService;
 //import com.google.gdata.data.spreadsheet.ListFeed;
 import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.ListFeed;
+import com.google.gdata.data.spreadsheet.ListEntry;
 import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
+<<<<<<< HEAD
 //import com.google.gdata.data.spreadsheet.SpreadsheetQuery;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.CellFeed;
 import com.google.gdata.data.spreadsheet.CellEntry;
+=======
+import com.google.gdata.client.spreadsheet.SpreadsheetQuery;
+import com.google.gdata.data.spreadsheet.WorksheetFeed;
+import com.google.gdata.data.spreadsheet.WorksheetEntry;
+>>>>>>> dev
 import java.security.GeneralSecurityException;
 
+import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.Drive.Files;
+import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
+
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.auth.oauth2.BearerToken;
 
 //import javax.xml.rpc.ServiceException;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
@@ -41,7 +56,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 //import com.google.api.client.json.jackson.JacksonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import java.util.Arrays;
-import java.io.File;
+//import java.io.File;
 import java.io.IOException;
 
 
@@ -104,7 +119,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Api(
   name = "learnicaEndPoints",
-  version = "v2",
+  version = "dev",
   //namespace = @ApiNamespace(ownerDomain="com.mobica.learnica",ownerName="com.mobica.learnica",packagePath=""),
   scopes = { Constants.EMAIL_SCOPE },
   clientIds = {
@@ -114,6 +129,8 @@ import javax.servlet.http.HttpServletResponse;
   audiences = {Constants.ANDROID_AUDIENCE},
   description = "API for the Lernica Backend application :P")
 public class LearnicaApi {
+//  public static FeedURLFactory factory = FeedURLFactory.getDefault();
+//  public static SpreadsheetService spreadsheetService= new SpreadsheetService("evermedcpr");
 
     /*
      * Get the display name from the user's email. For example, if the email is
@@ -166,11 +183,19 @@ public class LearnicaApi {
         String skype = newProfileForm.getSkype();
         String location = newProfileForm.getLocation();
         String office = newProfileForm.getOffice();
+<<<<<<< HEAD
         String deparment = newProfileForm.getDepartment();
         String role = newProfileForm.getRole();
         String responsible = newProfileForm.getResponsible();
         String starDate = newProfileForm.getstarDate();
         String profilePicture=newProfileForm.getproilePicture();
+=======
+        String role = newProfileForm.getRole();
+        String contactImg = newProfileForm.getContactImg();
+        String department = newProfileForm.getDepartment();
+        String responsible = newProfileForm.getResponsible();
+        String starDate = newProfileForm.getStarDate();
+>>>>>>> dev
 
 
 
@@ -199,11 +224,22 @@ public class LearnicaApi {
         // Save the entity in the datastore
 
         if (profile == null) {
+<<<<<<< HEAD
         	profile = new Profile(mainEmail, displayName, position, phone, skype, location,office,deparment,role,responsible,starDate,profilePicture);
         }else {
             // The Profile entity already exists
             // Update the Profile entity
             profile.update(displayName, position,phone,skype,location,office,deparment,role,responsible,starDate,profilePicture);
+=======
+        	profile = new Profile(mainEmail, displayName, position, phone, skype, location,office,role,
+          contactImg,department,responsible,starDate);
+
+        }else {
+            // The Profile entity already exists
+            // Update the Profile entity
+            profile.update(displayName, position,phone,skype,location,office,role,
+            contactImg,department,responsible,starDate);
+>>>>>>> dev
 
         }
 
@@ -378,6 +414,7 @@ public class LearnicaApi {
         return query.list();
 
     }
+<<<<<<< HEAD
 
     @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.GET)
     public List<SpreadsheetEntry>  getSpreadSheet()
@@ -417,6 +454,122 @@ public class LearnicaApi {
       //       e.printStackTrace();
       //   }
 
+=======
+    //,@Named("userEmail") final String userEmail
+    @ApiMethod(name="getPicture",path ="ProfilePicture", httpMethod = HttpMethod.POST)
+    public  List<File> getPicture(final User user)
+    throws UnauthorizedException,IOException,Exception{ //Drive.Files.List, List<File>
+      if (user == null)
+        throw new UnauthorizedException("authorization is required");
+      //List<File> result = new ArrayList<File>();
+      List scopes = Arrays.asList("https://www.googleapis.com/auth/drive","https://www.googleapis.com/auth/drive.file");
+      HttpTransport httpTransport = new NetHttpTransport();
+      JacksonFactory jsonFactory = new JacksonFactory();
+      AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
+      AppIdentityService.GetAccessTokenResult accessToken = appIdentity.getAccessToken(scopes);
+      Credential credential = new Credential(BearerToken.authorizationHeaderAccessMethod());
+        credential.setAccessToken(accessToken.getAccessToken());
+      /*Drive service = new Drive().
+       .setHttpRequestInitializer(credential)
+       .build();*/
+    //  Drive service = new Drive.Builder(httpTransport, jsonFactory, creds).build(); setHttpRequestInitializer(credential).setApplicationName("Drive Conector")
+      Drive service = new Drive.Builder(httpTransport, jsonFactory, credential).build();
+      String folder = "mimeType = 'application/vnd.google-apps.folder' and title = 'ProfilePictures'";
+      String folderId = ""
+      Files.List request = service.files().list().setQ("'" + folderId + "' in parents and trashed = false");
+
+         //FileList request = service.files().list().execute();
+         // Print the names and IDs for up to 10 files.
+      //  FileList result = service.files().list().execute();
+            // .setPageSize(10)
+            // .setFields("nextPageToken, files(id, name)")
+
+      //  List<File> files = result.getFiles();
+        List<File> files = result.getItems();//new ArrayList<File>();
+        //files.add(result.getItems());
+      //  if (files == null || files.size() == 0) {
+      //              throw new Exception("No files found.");
+        //} else {
+        if(files.size() > 0)
+              throw new Exception("file list");
+      //  }
+        return files;//.size();
+        }
+          //          System.out.println("Files:");
+          /*          for (File file : files) {
+                        throw new Exception( "file" +file.getName() +","+ file.getId());
+                    }
+                  } */
+        // if (request.isEmpty()){
+           //20150907142815907.jpg// request is Empty()"); }
+      /*
+      for(File file: request.getFiles()) {
+        if (file.getName() == "20150907142815907.jpg" )
+          throw new Exception("file --20150907142815907.jpg-- was found");
+      }
+      */
+    //  return request;
+
+
+    @ApiMethod(name="getSpreadSheet",path ="SpreadSheet", httpMethod = HttpMethod.POST)
+    public List<Tech> getSpreadSheet(final User user)throws UnauthorizedException,
+    GeneralSecurityException, IOException, Exception,ServiceException{
+      if (user == null)
+        throw new UnauthorizedException("authorization is required");
+      List scopes = Arrays.asList("https://spreadsheets.google.com/feeds");
+      AppIdentityService appIdentity = AppIdentityServiceFactory.getAppIdentityService();
+      AppIdentityService.GetAccessTokenResult accessToken = appIdentity.getAccessToken(scopes);
+      Credential creds = new Credential(BearerToken.authorizationHeaderAccessMethod());
+        creds.setAccessToken(accessToken.getAccessToken());
+      SpreadsheetService spreadsheetService = new SpreadsheetService("DBM4G-demo");
+      spreadsheetService.setOAuth2Credentials(creds);
+
+        //return getSpreadsheet(spreadsheetName);
+
+
+        ///public SpreadsheetEntry getSpreadsheet(String spreadsheet)
+        //      throws Exception {
+
+//        SpreadsheetQuery spreadsheetQuery = new SpreadsheetQuery(new URL("https://spreadsheets.google.com/feeds/spreadsheets"));
+//        spreadsheetQuery.setTitleQuery("test");
+
+
+        SpreadsheetQuery spreadsheetQuery = new SpreadsheetQuery(new URL("https://spreadsheets.google.com/feeds/spreadsheets"));
+        SpreadsheetFeed spreadsheetFeed = spreadsheetService.query(spreadsheetQuery,SpreadsheetFeed.class);
+        List<SpreadsheetEntry> spreadsheets = spreadsheetFeed.getEntries();
+        if (!spreadsheets.isEmpty()) {
+                //throw new Exception("No spreadsheets with that name");
+//                String name = spreadsheets.get
+                SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+                //WorksheetFeed worksheetFeed =
+                WorksheetFeed worksheetFeed = spreadsheetService.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+                List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
+                WorksheetEntry worksheet = worksheets.get(0);
+                URL listFeedUrl = worksheet.getListFeedUrl();
+                ListFeed listFeed = spreadsheetService.getFeed(listFeedUrl, ListFeed.class);
+                String columns = "";
+                // Iterate through each row, printing its cell values.
+                for (ListEntry row : listFeed.getEntries()) {
+                           // Print the first column's cell value
+                           columns= row.getTitle().getPlainText() + "\t";
+                           // Iterate over the remaining columns, and print each cell value
+                           /*for (String tag : row.getCustomElements().getTags()) {
+                               System.out.print(row.getCustomElements().getValue(tag) + "\t");
+                           }
+                           System.out.println();*/
+                       }
+                throw new Exception(columns);
+                //throw new Exception(spreadsheets.get(0));
+        }
+        /*else {*/
+          Query<Tech> query = ofy().load().type(Tech.class);
+            return query.list();
+        /*}*/
+      //  return spreadsheets.get(0);/**/
+        //  }*/
+
+
+>>>>>>> dev
 }
 
 
